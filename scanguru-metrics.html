@@ -171,12 +171,12 @@
 <header class="wrap hero">
   <p class="eyebrow" data-i18n="metrics.hero_eyebrow">Network telemetry</p>
   <h1><span data-i18n="metrics.hero_title_pre">A medical-imaging network that's</span> <span class="accent" data-i18n="metrics.hero_title_accent">live, multilingual, and growing.</span></h1>
-  <p data-i18n="metrics.hero_sub">Real usage from the ScanGuru pilot — scans analyzed, institutions onboarded, countries reached, and reports delivered in the reader's own language. Figures update automatically as the network grows.</p>
+  <p data-i18n="metrics.hero_sub">Built on over half a million images for training and calibration and 10,000+ validation tests across multiple modalities. Live clinical scans and multilingual reports update automatically as the network grows.</p>
 
   <div class="counters" id="counters">
+    <div class="metric"><div class="num">500,000+</div><div class="lab">Images trained &amp; calibrated</div><div class="delta"></div></div>
+    <div class="metric"><div class="num">10,000+</div><div class="lab">Images validation-tested</div><div class="delta"></div></div>
     <div class="metric"><div class="num" data-key="scans">0</div><div class="lab" data-i18n="metrics.c_scans">Scans analyzed</div><div class="delta" data-delta="scans"></div></div>
-    <div class="metric"><div class="num" data-key="institutions">0</div><div class="lab" data-i18n="metrics.c_institutions">Institutions enrolled</div><div class="delta" data-delta="institutions"></div></div>
-    <div class="metric"><div class="num" data-key="countries">0</div><div class="lab" data-i18n="metrics.c_countries">Countries reached</div><div class="delta" data-delta="countries"></div></div>
     <div class="metric"><div class="num" data-key="reports">0</div><div class="lab" data-i18n="metrics.c_reports">Reports generated</div><div class="delta" data-delta="reports"></div></div>
   </div>
 </header>
@@ -311,7 +311,7 @@
    }
 ============================================================================ */
 const CONFIG = {
-  MODE: 'preview',                          // 'preview' | 'live'
+  MODE: 'live',                          // 'preview' | 'live'
   API_ENDPOINT: 'https://scanguru-portal-api-production.up.railway.app/api/v1/metrics/public',
   REFRESH_MS: 15000
 };
