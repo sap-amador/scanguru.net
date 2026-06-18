@@ -9,6 +9,9 @@
 const ScanGuruI18n = {
     version: '6.3.0',
     currentLang: 'en',
+    coverage: {},
+    suggested: null,
+    SWITCH_THRESHOLD: 0.6,
     
     languages: {
         en: { name: 'English', native: 'English', flag: '🇺🇸', region: 'Americas', speakers: 1500 },
@@ -115,10 +118,11 @@ const ScanGuruI18n = {
         return value || fallback || key;
     },
     
-    setLanguage: function(lang) {
+    setLanguage: function(lang, persist) {
+        if (persist === undefined) persist = true;
         if (!this.translations[lang]) lang = 'en';
         this.currentLang = lang;
-        localStorage.setItem('scanguru_lang', lang);
+        if (persist) try { localStorage.setItem('scanguru_lang', lang); } catch (e) {}
         document.documentElement.lang = lang;
         const langDef = this.languages[lang];
         if (langDef && langDef.rtl) {
@@ -175,15 +179,24 @@ const ScanGuruI18n = {
         const self = this;
         const opt = function(lang){
             var active = lang.code === self.currentLang;
-            return '<div class="lang-option' + (active?' active':'') + '" data-lang="' + lang.code + '" style="display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;font-size:13px;color:' + (active?'#14B8A6':'#94A3B8') + ';background:' + (active?'rgba(20,184,166,0.15)':'transparent') + ';"><span>' + lang.flag + '</span><span>' + lang.native + '</span></div>';
+            var cov = self.coverage[lang.code];
+            var partial = (lang.code !== 'en' && cov !== undefined && cov < self.SWITCH_THRESHOLD) ? '<span style="margin-left:auto;font-size:10px;color:#64748B;">· partial</span>' : '';
+            return '<div class="lang-option' + (active?' active':'') + '" data-lang="' + lang.code + '" style="display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;font-size:13px;color:' + (active?'#14B8A6':'#94A3B8') + ';background:' + (active?'rgba(20,184,166,0.15)':'transparent') + ';"><span>' + lang.flag + '</span><span>' + lang.native + '</span>' + partial + '</div>';
         };
+        const mk = function(code){ var l = self.languages[code]; return l ? { code: code, name: l.name, native: l.native, flag: l.flag, region: l.region, speakers: l.speakers } : null; };
         const hdr = function(label){ return '<div style="padding:8px 12px;font-size:10px;font-weight:600;color:#64748B;text-transform:uppercase;background:#0F172A;position:sticky;top:0;">' + label + '</div>'; };
+        const shown = {};
+        let html = '';
+        const sugg = ['en'];
+        if (self.suggested && self.suggested !== 'en' && self.languages[self.suggested]) sugg.push(self.suggested);
+        html += hdr('Suggested');
+        sugg.forEach(function(code){ var o = mk(code); if (o) { html += opt(o); shown[code] = 1; } });
         const featured = ['en','es','fr','de','zh','ja','ar','hi'];
-        let html = hdr('Popular');
-        featured.forEach(function(code){ var l = self.languages[code]; if (l) html += opt({ code: code, name: l.name, native: l.native, flag: l.flag, region: l.region, speakers: l.speakers }); });
+        html += hdr('Popular');
+        featured.forEach(function(code){ if (shown[code]) return; var o = mk(code); if (o) { html += opt(o); shown[code] = 1; } });
         const regions = {};
         Object.entries(this.languages).forEach(([code, lang]) => {
-            if (featured.indexOf(code) !== -1) return;
+            if (shown[code]) return;
             if (!regions[lang.region]) regions[lang.region] = [];
             regions[lang.region].push({ code, ...lang });
         });
@@ -208,23 +221,77 @@ const ScanGuruI18n = {
         });
     },
     
-    detectLanguage: function() {
-        const saved = localStorage.getItem('scanguru_lang');
-        if (saved && this.translations[saved]) return saved;
-        const browserLang = navigator.language || navigator.userLanguage;
-        if (browserLang) {
-            if (this.translations[browserLang]) return browserLang;
-            const base = browserLang.split('-')[0];
-            if (this.translations[base]) return base;
+    computeCoverage: function() {
+        const en = this.translations.en;
+        function countAgainst(e, l) {
+            let n = 0;
+            for (const k in e) {
+                const ev = e[k], lv = l ? l[k] : undefined;
+                if (ev && typeof ev === 'object' && !Array.isArray(ev)) {
+                    n += countAgainst(ev, (lv && typeof lv === 'object') ? lv : {});
+                } else if (lv !== undefined && lv !== null && lv !== '') { n++; }
+            }
+            return n;
         }
+        const denom = countAgainst(en, en) || 1;
+        this.coverage = {};
+        for (const code in this.translations) {
+            this.coverage[code] = code === 'en' ? 1 : countAgainst(en, this.translations[code]) / denom;
+        }
+        return this.coverage;
+    },
+
+    TZ_LANG: {
+        'Europe/Athens':'el','Europe/Berlin':'de','Europe/Vienna':'de','Europe/Zurich':'de',
+        'Europe/Madrid':'es','Europe/Paris':'fr','Europe/Brussels':'fr','Europe/Rome':'it',
+        'Europe/Lisbon':'pt','Europe/Amsterdam':'nl','Europe/Warsaw':'pl','Europe/Prague':'cs',
+        'Europe/Budapest':'hu','Europe/Bucharest':'ro','Europe/Stockholm':'sv','Europe/Copenhagen':'da',
+        'Europe/Helsinki':'fi','Europe/Moscow':'ru','Europe/Kyiv':'uk','Europe/Istanbul':'tr',
+        'Asia/Kolkata':'hi','Asia/Calcutta':'hi','Asia/Dubai':'ar','Asia/Riyadh':'ar','Asia/Qatar':'ar',
+        'Asia/Bahrain':'ar','Asia/Kuwait':'ar','Asia/Baghdad':'ar','Africa/Cairo':'ar',
+        'Asia/Shanghai':'zh','Asia/Chongqing':'zh','Asia/Taipei':'zh-TW','Asia/Hong_Kong':'zh-TW',
+        'Asia/Tokyo':'ja','Asia/Seoul':'ko','Asia/Bangkok':'th','Asia/Ho_Chi_Minh':'vi','Asia/Saigon':'vi',
+        'Asia/Jakarta':'id','Asia/Tehran':'fa','Asia/Karachi':'ur','Asia/Dhaka':'bn',
+        'America/Sao_Paulo':'pt','America/Mexico_City':'es','America/Bogota':'es','America/Buenos_Aires':'es',
+        'America/Lima':'es','America/Santiago':'es'
+    },
+
+    detectRegional: function() {
+        const self = this;
+        const has = function(c){ return (c && self.translations[c]) ? c : null; };
+        const list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || navigator.userLanguage || ''];
+        for (let i = 0; i < list.length; i++) {
+            const loc = list[i];
+            if (!loc || /^en\b/i.test(loc)) continue;
+            if (/^zh-(TW|HK|Hant)/i.test(loc) && has('zh-TW')) return 'zh-TW';
+            const exact = has(loc), base = has(loc.split('-')[0]);
+            if (exact) return exact;
+            if (base) return base;
+        }
+        try {
+            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const c = this.TZ_LANG[tz];
+            if (has(c)) return c;
+        } catch (e) {}
+        return null;
+    },
+
+    detectLanguage: function() {
+        this.suggested = this.detectRegional();              // always, for the dropdown
+        let saved = null;
+        try { saved = localStorage.getItem('scanguru_lang'); } catch (e) {}
+        if (saved && this.translations[saved]) return saved; // manual choice wins
+        const reg = this.suggested;                          // option B: coverage-gated auto-switch
+        if (reg && (this.coverage[reg] || 0) >= this.SWITCH_THRESHOLD) return reg;
         return 'en';
     },
     
     getLanguageCount: function() { return Object.keys(this.languages).length; },
     
     init: function() {
+        this.computeCoverage();
         const lang = this.detectLanguage();
-        this.setLanguage(lang);
+        this.setLanguage(lang, false);
         this.buildDropdown();
         const btn = document.getElementById('langBtn');
         const dropdown = document.getElementById('langDropdown');
