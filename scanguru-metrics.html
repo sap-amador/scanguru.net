@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScanGuru — Live Network Metrics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<style>
+  :root{
+    --bg:#0B1120; --panel:#0F172A; --panel-2:#13203A; --line:#1E2D4A;
+    --ink:#E8EEF7; --muted:#8597B4; --teal:#14B8A6; --cyan:#38BDF8;
+    --amber:#F59E0B; --red:#EF4444; --grid:#16243f;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --disp:'Space Grotesk',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:radial-gradient(1200px 600px at 80% -10%,#13203A 0%,var(--bg) 55%);
+    color:var(--ink);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+
+  /* ---- top status strip ---- */
+  .status{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);padding:12px 0;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(20,184,166,.6);animation:pulse 2.2s infinite}
+  .status .live{color:var(--teal);font-weight:700;letter-spacing:.08em}
+  .status .sep{color:var(--line)}
+  .preview-chip{margin-left:auto;color:var(--amber);border:1px solid #4d3a12;background:#241b08;
+    padding:4px 10px;border-radius:999px;font-weight:700;letter-spacing:.06em}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(20,184,166,.5)}70%{box-shadow:0 0 0 10px rgba(20,184,166,0)}100%{box-shadow:0 0 0 0 rgba(20,184,166,0)}}
+
+  /* ---- hero ---- */
+  .hero{padding:54px 0 26px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin:0 0 14px}
+  .hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(30px,5vw,52px);line-height:1.05;margin:0;letter-spacing:-.02em}
+  .hero h1 .accent{color:var(--teal)}
+  .hero p{max-width:620px;color:var(--muted);font-size:16px;margin:16px 0 0}
+
+  /* ---- hero counters ---- */
+  .counters{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:38px 0 8px}
+  .metric{background:linear-gradient(180deg,var(--panel) 0%,#0c1730 100%);border:1px solid var(--line);
+    border-radius:16px;padding:22px 20px;position:relative;overflow:hidden}
+  .metric::after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;
+    background:linear-gradient(90deg,var(--teal),var(--cyan));opacity:.85}
+  .metric .num{font-family:var(--mono);font-weight:700;font-size:clamp(26px,3.4vw,40px);line-height:1;letter-spacing:-.01em}
+  .metric .lab{color:var(--muted);font-size:13px;margin-top:10px;letter-spacing:.02em}
+  .metric .delta{font-family:var(--mono);font-size:11px;color:var(--teal);margin-top:6px;min-height:14px}
+
+  /* ---- section scaffolding ---- */
+  section{padding:34px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin:0 0 20px}
+  .sec-head .n{font-family:var(--mono);color:var(--teal);font-size:12px;letter-spacing:.1em}
+  .sec-head h2{font-family:var(--disp);font-weight:600;font-size:22px;margin:0;letter-spacing:-.01em}
+  .sec-head .note{margin-left:auto;color:var(--muted);font-size:12px;font-family:var(--mono)}
+
+  /* ---- global reach ---- */
+  .reach{display:grid;grid-template-columns:1.55fr 1fr;gap:18px}
+  .map-card,.list-card,.chart-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .map-card{padding:8px}
+  #map{width:100%;height:340px;display:block}
+  .graticule{stroke:var(--grid);stroke-width:1}
+  .arc{stroke:var(--teal);stroke-width:1;fill:none;opacity:.18}
+  .node{fill:var(--cyan)}
+  .node-pulse{fill:none;stroke:var(--teal);stroke-width:1.4;opacity:.7}
+  .region-label{fill:#33456b;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+  .ctry-list{list-style:none;margin:0;padding:0;max-height:324px;overflow:auto}
+  .ctry-list li{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line);font-size:14px}
+  .ctry-list li:last-child{border-bottom:0}
+  .ctry-list .flag{font-size:18px;width:24px;text-align:center}
+  .ctry-list .nm{flex:1}
+  .ctry-list .v{font-family:var(--mono);color:var(--muted)}
+  .bar{height:5px;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--cyan));margin-top:3px}
+
+  /* ---- glowing world map ---- */
+  .map-card{position:relative}
+  #map{height:480px}
+  .sphere{fill:#0a1426}
+  .land{fill:#15294a;stroke:none}
+  .border{fill:none;stroke:#24365a;stroke-width:.6}
+  .glow-ring{fill:none;stroke:var(--teal);stroke-width:1.5}
+  .glow-dot{fill:#5eead4}
+  .map-title{position:absolute;left:22px;top:18px;z-index:2;pointer-events:none}
+  .map-title .t{font-family:var(--disp);font-weight:600;font-size:18px}
+  .map-title .s{font-family:var(--mono);font-size:12px;color:var(--teal);margin-top:4px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px}
+  .chip .flag{font-size:16px}
+  .chip .v{font-family:var(--mono);color:var(--muted)}
+
+  /* ---- charts grid ---- */
+  .charts{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+  .charts .full{grid-column:1 / -1}
+  .chart-card h3{font-family:var(--disp);font-weight:500;font-size:15px;margin:0 0 4px}
+  .chart-card .sub{color:var(--muted);font-size:12px;margin:0 0 14px;font-family:var(--mono)}
+  .chart-box{position:relative;height:230px}
+  .chart-box.tall{height:260px}
+
+  /* ---- modality (clinical) cards ---- */
+  .mcards{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .mcard{background:#0c1730;border:1px solid var(--line);border-radius:12px;padding:14px 12px}
+  .mcard .mk{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em}
+  .mcard .mv{font-family:var(--mono);font-weight:700;font-size:22px;margin:6px 0}
+  @media(max-width:880px){.mcards{grid-template-columns:repeat(2,1fr)}}
+
+  /* ---- capability strip ---- */
+  .cap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .cap .card{background:linear-gradient(180deg,#10203c,#0c1730);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .cap .big{font-family:var(--mono);font-weight:700;font-size:30px}
+  .cap .big .road{color:var(--amber)}
+  .cap .k{color:var(--muted);font-size:13px;margin-top:8px}
+  .cap .tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:2px 8px;border-radius:999px;margin-top:12px}
+  .tag.live{color:var(--teal);background:#06281f;border:1px solid #134e3f}
+  .tag.road{color:var(--amber);background:#241b08;border:1px solid #4d3a12}
+
+  /* ---- activity ticker ---- */
+  .ticker{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .ticker .row{display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid var(--line);font-size:14px;
+    animation:slidein .5s ease}
+  .ticker .row:last-child{border-bottom:0}
+  .ticker .t{font-family:var(--mono);font-size:12px;color:var(--muted);width:60px}
+  .ticker .mod{font-family:var(--mono);font-size:11px;color:var(--teal);border:1px solid #134e3f;background:#06281f;border-radius:6px;padding:2px 8px}
+  .ticker .loc{color:var(--muted);margin-left:auto;font-size:13px}
+  @keyframes slidein{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+  /* ---- proof ---- */
+  .proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .quote{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:22px}
+  .quote p{margin:0 0 12px;font-size:15px}
+  .quote .who{color:var(--muted);font-size:13px;font-family:var(--mono)}
+  .placeholder{outline:1px dashed #3a4a6b;outline-offset:3px}
+  .ph-tag{font-family:var(--mono);font-size:10px;color:#5b6f93;letter-spacing:.1em}
+
+  /* ---- compliance footer ---- */
+  .compliance{margin-top:40px;border-top:2px solid var(--amber);background:#0a1324;padding:18px 0;text-align:center}
+  .compliance .ds{color:#FCD34D;font-weight:600}
+  .compliance .body{color:var(--muted);font-size:12.5px;max-width:880px;margin:6px auto 0;line-height:1.55}
+  .compliance .ruo{color:#FCD34D;font-weight:600}
+
+  footer.meta{color:#5b6f93;font-size:12px;font-family:var(--mono);padding:22px 0 50px;text-align:center}
+
+  @media (max-width:880px){
+    .counters{grid-template-columns:repeat(2,1fr)}
+    .reach,.charts,.cap,.proof{grid-template-columns:1fr}
+    .charts .full{grid-column:auto}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+    <!-- ScanGuru i18n v6 (83 languages) — same engine as the site. Auto-detects/saved language. -->
+    <script src="https://cdn.jsdelivr.net/gh/sap-amador/scanguru.net@main/scanguru-i18n-v6-full-site.js"></script>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="status">
+    <span class="dot"></span><span class="live" id="liveLabel" data-i18n="metrics.status_live">LIVE</span>
+    <span class="sep">/</span><span id="updated">syncing…</span>
+    <span class="sep">/</span><span data-i18n="metrics.status_network">ScanGuru medical-imaging network</span>
+    <span class="preview-chip" id="previewChip" data-i18n="metrics.preview_chip">PREVIEW DATA · CONNECT API TO GO LIVE</span>
+  </div>
+</div>
+
+<header class="wrap hero">
+  <p class="eyebrow" data-i18n="metrics.hero_eyebrow">Network telemetry</p>
+  <h1><span data-i18n="metrics.hero_title_pre">A medical-imaging network that's</span> <span class="accent" data-i18n="metrics.hero_title_accent">live, multilingual, and growing.</span></h1>
+  <p data-i18n="metrics.hero_sub">Real usage from the ScanGuru pilot — scans analyzed, institutions onboarded, countries reached, and reports delivered in the reader's own language. Figures update automatically as the network grows.</p>
+
+  <div class="counters" id="counters">
+    <div class="metric"><div class="num" data-key="scans">0</div><div class="lab" data-i18n="metrics.c_scans">Scans analyzed</div><div class="delta" data-delta="scans"></div></div>
+    <div class="metric"><div class="num" data-key="institutions">0</div><div class="lab" data-i18n="metrics.c_institutions">Institutions enrolled</div><div class="delta" data-delta="institutions"></div></div>
+    <div class="metric"><div class="num" data-key="countries">0</div><div class="lab" data-i18n="metrics.c_countries">Countries reached</div><div class="delta" data-delta="countries"></div></div>
+    <div class="metric"><div class="num" data-key="reports">0</div><div class="lab" data-i18n="metrics.c_reports">Reports generated</div><div class="delta" data-delta="reports"></div></div>
+  </div>
+</header>
+
+<!-- GEOGRAPHIC METRICS -->
+<section class="wrap">
+  <div class="sec-head"><span class="n">01</span><h2 data-i18n="metrics.geo_h">Geographic metrics</h2><span class="note" id="reachNote"></span></div>
+  <div class="map-card">
+    <div class="map-title"><div class="t" data-i18n="metrics.map_title">Where ScanGuru is being used</div><div class="s" id="mapSub" data-i18n="metrics.map_sub">glowing nodes = active sites · country distribution</div></div>
+    <svg id="map" viewBox="0 0 960 480" preserveAspectRatio="xMidYMid meet" aria-label="World map of countries where ScanGuru is used"></svg>
+  </div>
+  <div class="chips" id="ctryList"></div>
+  <div class="chart-card" style="margin-top:18px">
+    <h3 data-i18n="metrics.lang_dist_h">Language distribution</h3><p class="sub" data-i18n="metrics.lang_dist_sub">Reports delivered, by language</p>
+    <div class="chart-box"><canvas id="chartLang"></canvas></div>
+  </div>
+</section>
+
+<!-- CLINICAL METRICS -->
+<section class="wrap">
+  <div class="sec-head"><span class="n">02</span><h2 data-i18n="metrics.clin_h">Clinical metrics</h2><span class="note" data-i18n="metrics.clin_note">Scans by live modality</span></div>
+  <div class="charts">
+    <div class="chart-card"><div class="mcards" id="modalityCards"></div></div>
+    <div class="chart-card">
+      <h3 data-i18n="metrics.mix_h">Modality mix</h3><p class="sub" data-i18n="metrics.mix_sub">Live modalities only</p>
+      <div class="chart-box"><canvas id="chartModality"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONAL METRICS -->
+<section class="wrap">
+  <div class="sec-head"><span class="n">03</span><h2 data-i18n="metrics.op_h">Operational metrics</h2><span class="note" data-i18n="metrics.op_note">Auto-refreshing</span></div>
+  <div class="counters" style="margin:0 0 18px">
+    <div class="metric"><div class="num" data-key="avg_processing_sec">0</div><div class="lab" data-i18n="metrics.op_avg">Avg processing time (sec)</div><div class="delta"></div></div>
+    <div class="metric"><div class="num" data-key="vol_daily">0</div><div class="lab" data-i18n="metrics.op_today">Scans today</div><div class="delta"></div></div>
+    <div class="metric"><div class="num" data-key="vol_weekly">0</div><div class="lab" data-i18n="metrics.op_week">Last 7 days</div><div class="delta"></div></div>
+    <div class="metric"><div class="num" data-key="vol_monthly">0</div><div class="lab" data-i18n="metrics.op_month">Last 30 days</div><div class="delta"></div></div>
+  </div>
+  <div class="charts">
+    <div class="chart-card full">
+      <h3 data-i18n="metrics.vol_h">Daily volume</h3><p class="sub" data-i18n="metrics.vol_sub">Scans analyzed · last 30 days</p>
+      <div class="chart-box tall"><canvas id="chartScans"></canvas></div>
+    </div>
+    <div class="chart-card full">
+      <h3 data-i18n="metrics.tat_h">Average turnaround</h3><p class="sub" data-i18n="metrics.tat_sub">Seconds from upload to report · lower is better</p>
+      <div class="chart-box tall"><canvas id="chartTat"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY -->
+<section class="wrap">
+  <div class="sec-head"><span class="n">04</span><h2 data-i18n="metrics.cap_h">Platform capability</h2><span class="note" data-i18n="metrics.cap_note">What the platform can do today vs the roadmap</span></div>
+  <div class="cap">
+    <div class="card">
+      <div class="big">5<span style="color:var(--muted);font-size:18px"> live</span> · <span class="road">17</span></div>
+      <div class="k" data-i18n="metrics.cap_mod_k">Imaging modalities — 5 live, 9 in the demo, 17 on the roadmap.</div>
+      <span class="tag live">CXR · CT BRAIN · CT CHEST · DENTAL · MSK</span>
+    </div>
+    <div class="card">
+      <div class="big">50+<span style="color:var(--muted);font-size:18px"> live</span> · <span class="road">400+</span></div>
+      <div class="k" data-i18n="metrics.cap_path_k">Pathologies — 50+ live across 5 modalities, on a roadmap to 400+.</div>
+      <span class="tag road" data-i18n="metrics.cap_path_tag">ROADMAP TARGET 400+</span>
+    </div>
+    <div class="card">
+      <div class="big">83</div>
+      <div class="k" data-i18n="metrics.cap_lang_k">Languages supported for dual-language reports — a genuine differentiator.</div>
+      <span class="tag live" data-i18n="metrics.cap_lang_tag">DUAL-LANGUAGE PDF REPORTS</span>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE ACTIVITY -->
+<section class="wrap">
+  <div class="sec-head"><span class="n">05</span><h2 data-i18n="metrics.act_h">Recent activity</h2><span class="note" id="activityNote"></span></div>
+  <div class="ticker" id="ticker"></div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="wrap">
+  <div class="sec-head"><span class="n">06</span><h2 data-i18n="metrics.field_h">From the field</h2><span class="ph-tag">REPLACE WITH REAL, ATTRIBUTED QUOTES</span></div>
+  <div class="proof">
+    <div class="quote placeholder">
+      <p>“Add a real, attributed quote from a pilot radiologist or professor here. One genuine sentence outperforms a page of marketing.”</p>
+      <div class="who">— Name, Role · Institution</div>
+    </div>
+    <div class="quote placeholder">
+      <p>“Reserve this card for a second verified quote — a teaching lead or clinic director who used the multilingual reports.”</p>
+      <div class="who">— Name, Role · Institution</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<div class="compliance">
+  <div class="wrap">
+    <span class="ds"><span aria-hidden="true">⚕️ </span><span data-i18n="legal.decision_support">Decision support only — not a medical diagnosis. AI output must be reviewed and confirmed by a qualified clinician before any clinical decision.</span></span>
+    <div class="body">
+      <span class="ruo" data-i18n="legal.ruo">Research Use Only — pending market-specific regulatory registration.</span>
+    </div>
+  </div>
+</div>
+
+<footer class="meta wrap">
+  <span data-i18n="metrics.footer_note">Metrics reflect the ScanGuru pilot network.</span> <span id="srcNote"></span>
+</footer>
+
+<script>
+/* ============================================================================
+   CONFIG — the only thing you edit to go live.
+   ----------------------------------------------------------------------------
+   MODE 'preview'  → shows the embedded SAMPLE numbers below + a PREVIEW banner.
+                     Use only while building. These are illustrative, not real.
+   MODE 'live'     → fetches REAL metrics from API_ENDPOINT every REFRESH_MS and
+                     hides the preview banner. Counters animate to real values.
+
+   IMPORTANT (honesty): never ship MODE='preview' to the public, and never put
+   sample numbers into a grant application. The page is designed to look strong
+   on real pilot numbers — let it grow truthfully.
+
+   Expected JSON shape from API_ENDPOINT (all fields optional, page degrades):
+   {
+     "scans": 1284, "institutions": 6, "countries": 9, "report_languages": 23,
+     "updated": "2026-06-18T10:00:00Z",
+     "countries_list": [{"code":"IN","name":"India","flag":"🇮🇳","scans":420,"lat":21,"lon":78}, ...],
+     "timeseries": [{"date":"2026-05-20","scans":18}, ...],            // last 30d
+     "modalities": {"CXR":520,"CT Brain":210,"CT Chest":180,"Dental":240,"MSK":134},
+     "languages": [{"name":"Hindi","count":310}, ...],
+     "turnaround": [{"date":"2026-05-20","sec":52}, ...],
+     "activity": [{"time":"10:02","modality":"CXR","location":"Chennai, IN"}, ...]
+   }
+============================================================================ */
+const CONFIG = {
+  MODE: 'preview',                          // 'preview' | 'live'
+  API_ENDPOINT: 'https://scanguru-portal-api-production.up.railway.app/api/v1/metrics/public',
+  REFRESH_MS: 15000
+};
+
+/* ---- SAMPLE (preview) data — illustrative pilot-scale, clearly not real ---- */
+const SAMPLE = {
+  scans: 1284, institutions: 6, countries: 9, report_languages: 23, reports: 1190,
+  volume: {daily: 41, weekly: 286, monthly: 1284}, avg_processing_sec: 47,
+  updated: new Date().toISOString(),
+  countries_list: [
+    {code:'IN',name:'India',flag:'🇮🇳',scans:430,lat:21,lon:78},
+    {code:'AE',name:'United Arab Emirates',flag:'🇦🇪',scans:210,lat:24,lon:54},
+    {code:'DE',name:'Germany',flag:'🇩🇪',scans:165,lat:51,lon:10},
+    {code:'AU',name:'Australia',flag:'🇦🇺',scans:120,lat:-25,lon:133},
+    {code:'GB',name:'United Kingdom',flag:'🇬🇧',scans:96,lat:54,lon:-2},
+    {code:'ID',name:'Indonesia',flag:'🇮🇩',scans:84,lat:-2,lon:118},
+    {code:'TR',name:'Türkiye',flag:'🇹🇷',scans:72,lat:39,lon:35},
+    {code:'VN',name:'Vietnam',flag:'🇻🇳',scans:60,lat:16,lon:108},
+    {code:'NG',name:'Nigeria',flag:'🇳🇬',scans:47,lat:9,lon:8}
+  ],
+  modalities: {'CXR':520,'CT Brain':238,'CT Chest':186,'Dental':206,'MSK':134},
+  languages: [
+    {name:'English',count:392},{name:'Hindi',count:268},{name:'Arabic',count:171},
+    {name:'German',count:128},{name:'Indonesian',count:96},{name:'Turkish',count:74},
+    {name:'Vietnamese',count:61}
+  ],
+  activity: [
+    {time:'10:02',modality:'CXR',location:'Chennai, IN'},
+    {time:'09:58',modality:'CT Brain',location:'Dubai, AE'},
+    {time:'09:51',modality:'Dental',location:'Munich, DE'},
+    {time:'09:44',modality:'MSK',location:'Jakarta, ID'},
+    {time:'09:39',modality:'CT Chest',location:'Hyderabad, IN'},
+    {time:'09:30',modality:'CXR',location:'Istanbul, TR'}
+  ]
+};
+// build 30-day series + turnaround for the sample
+SAMPLE.timeseries = (function(){const a=[];let base=22;for(let i=29;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);
+  base+=Math.round((Math.random()-.35)*6);base=Math.max(6,base);a.push({date:d.toISOString().slice(0,10),scans:base});}return a;})();
+SAMPLE.turnaround = SAMPLE.timeseries.map((p,i)=>({date:p.date,sec:Math.max(28,64-i*0.7+(Math.random()*6-3)).toFixed(0)*1}));
+
+/* ---- helpers ---- */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduceMotion = matchMedia('(prefers-reduced-motion:reduce)').matches;
+function fmt(n){return (n||0).toLocaleString('en-US');}
+const prev = {};
+function T(key, fallback){ try{ if(window.ScanGuruI18n){ const v=ScanGuruI18n.t(key); if(v && v!==key) return v; } }catch(e){} return fallback; }
+
+function animateCount(el,to){
+  const from = prev[el.dataset.key]||0; prev[el.dataset.key]=to;
+  if(reduceMotion||from===to){el.textContent=fmt(to)+(el.dataset.key==='report_languages'||el.dataset.key==='countries'?'':'');return;}
+  const dur=900,t0=performance.now();
+  (function step(t){const k=Math.min(1,(t-t0)/dur);const e=1-Math.pow(1-k,3);
+    el.textContent=fmt(Math.round(from+(to-from)*e));if(k<1)requestAnimationFrame(step);})(t0);
+}
+function showDelta(key,to){const el=document.querySelector(`[data-delta="${key}"]`);if(!el)return;
+  const d=to-(prev['_d'+key]||to);prev['_d'+key]=to;if(d>0){el.textContent='▲ +'+d+' since last sync';}else{el.textContent='';}}
+
+/* ---- glowing world map (d3 + world-atlas); falls back to graticule below ---- */
+let _worldCache=null;
+async function getWorld(){
+  if(_worldCache)return _worldCache;
+  const r=await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+  if(!r.ok)throw new Error('world-atlas '+r.status);
+  _worldCache=await r.json();return _worldCache;
+}
+async function drawWorld(countries){
+  if(typeof d3==='undefined'||typeof topojson==='undefined')return drawMap(countries);
+  let world; try{world=await getWorld();}catch(e){console.warn('map fallback:',e);return drawMap(countries);}
+  const svg=d3.select('#map');svg.selectAll('*').remove();
+  const defs=svg.append('defs');
+  const f=defs.append('filter').attr('id','glow').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
+  f.append('feGaussianBlur').attr('stdDeviation',3.6).attr('result','b');
+  const fm=f.append('feMerge');fm.append('feMergeNode').attr('in','b');fm.append('feMergeNode').attr('in','SourceGraphic');
+  const proj=d3.geoNaturalEarth1().fitExtent([[8,8],[952,472]],{type:'Sphere'});
+  const path=d3.geoPath(proj);
+  svg.append('path').datum({type:'Sphere'}).attr('class','sphere').attr('d',path);
+  svg.append('path').datum(topojson.feature(world,world.objects.countries)).attr('class','land').attr('d',path);
+  svg.append('path').datum(topojson.mesh(world,world.objects.countries,(a,b)=>a!==b)).attr('class','border').attr('d',path);
+  const max=Math.max(...countries.map(c=>c.scans),1);
+  countries.forEach((c,i)=>{
+    const p=proj([c.lon,c.lat]);if(!p)return;
+    const r=4+Math.sqrt(c.scans/max)*7;
+    if(!reduceMotion){
+      const ring=svg.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',r).attr('class','glow-ring');
+      ring.append('animate').attr('attributeName','r').attr('values',r+';'+(r+15)+';'+r).attr('dur','2.8s').attr('begin',(i*0.2)+'s').attr('repeatCount','indefinite');
+      ring.append('animate').attr('attributeName','opacity').attr('values','.85;0;.85').attr('dur','2.8s').attr('begin',(i*0.2)+'s').attr('repeatCount','indefinite');
+    }
+    const dot=svg.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',r).attr('class','glow-dot').attr('filter','url(#glow)');
+    dot.append('title').text(c.name+' — '+fmt(c.scans)+' scans');
+  });
+}
+
+/* ---- fallback constellation map ---- */
+function projX(lon){return (lon+180)/360*720;}
+function projY(lat){return (90-lat)/180*340;}
+function drawMap(countries){
+  const svg=$('#map');svg.innerHTML='';
+  const NS='http://www.w3.org/2000/svg';
+  // graticule
+  for(let lon=-150;lon<=150;lon+=30){const x=projX(lon);const l=document.createElementNS(NS,'line');
+    l.setAttribute('x1',x);l.setAttribute('y1',0);l.setAttribute('x2',x);l.setAttribute('y2',340);l.setAttribute('class','graticule');svg.appendChild(l);}
+  for(let lat=-60;lat<=60;lat+=30){const y=projY(lat);const l=document.createElementNS(NS,'line');
+    l.setAttribute('x1',0);l.setAttribute('y1',y);l.setAttribute('x2',720);l.setAttribute('y2',y);l.setAttribute('class','graticule');svg.appendChild(l);}
+  [['N. AMERICA',150,90],['EUROPE',360,80],['MENA',392,150],['S. ASIA',470,165],['SE ASIA',540,205],['E. ASIA',560,120]]
+    .forEach(([t,x,y])=>{const tx=document.createElementNS(NS,'text');tx.setAttribute('x',x);tx.setAttribute('y',y);
+      tx.setAttribute('class','region-label');tx.textContent=t;svg.appendChild(tx);});
+  const hub={x:projX(20),y:projY(35)};
+  countries.forEach(c=>{const x=projX(c.lon),y=projY(c.lat);
+    const arc=document.createElementNS(NS,'path');const mx=(hub.x+x)/2,my=Math.min(hub.y,y)-30;
+    arc.setAttribute('d',`M${hub.x},${hub.y} Q${mx},${my} ${x},${y}`);arc.setAttribute('class','arc');svg.appendChild(arc);});
+  countries.forEach((c,i)=>{const x=projX(c.lon),y=projY(c.lat);
+    const ring=document.createElementNS(NS,'circle');ring.setAttribute('cx',x);ring.setAttribute('cy',y);
+    ring.setAttribute('r',4);ring.setAttribute('class','node-pulse');
+    if(!reduceMotion){const an=document.createElementNS(NS,'animate');an.setAttribute('attributeName','r');
+      an.setAttribute('values','4;13;4');an.setAttribute('dur','2.6s');an.setAttribute('begin',(i*0.25)+'s');
+      an.setAttribute('repeatCount','indefinite');ring.appendChild(an);
+      const an2=document.createElementNS(NS,'animate');an2.setAttribute('attributeName','opacity');
+      an2.setAttribute('values','.7;0;.7');an2.setAttribute('dur','2.6s');an2.setAttribute('begin',(i*0.25)+'s');
+      an2.setAttribute('repeatCount','indefinite');ring.appendChild(an2);}
+    svg.appendChild(ring);
+    const dot=document.createElementNS(NS,'circle');dot.setAttribute('cx',x);dot.setAttribute('cy',y);
+    dot.setAttribute('r',3.2);dot.setAttribute('class','node');
+    const tt=document.createElementNS(NS,'title');tt.textContent=`${c.name} — ${fmt(c.scans)} scans`;dot.appendChild(tt);
+    svg.appendChild(dot);});
+}
+function drawList(countries){
+  $('#ctryList').innerHTML=countries.map(c=>`<span class="chip"><span class="flag">${c.flag||'•'}</span>${c.name}<span class="v">${fmt(c.scans)}</span></span>`).join('');
+}
+
+/* ---- charts ---- */
+let charts={};
+const GRID='#16243f', TICK='#8597B4';
+Chart.defaults.color=TICK; Chart.defaults.font.family="'JetBrains Mono', monospace"; Chart.defaults.font.size=11;
+function mkScans(ts){const ctx=$('#chartScans');const g=ctx.getContext('2d');
+  const grad=g.createLinearGradient(0,0,0,260);grad.addColorStop(0,'rgba(20,184,166,.45)');grad.addColorStop(1,'rgba(20,184,166,0)');
+  charts.scans&&charts.scans.destroy();
+  charts.scans=new Chart(ctx,{type:'line',data:{labels:ts.map(p=>p.date.slice(5)),
+    datasets:[{data:ts.map(p=>p.scans),borderColor:'#14B8A6',backgroundColor:grad,fill:true,tension:.38,
+      pointRadius:0,pointHoverRadius:4,borderWidth:2}]},
+    options:{maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:GRID},ticks:{maxTicksLimit:8}},y:{grid:{color:GRID},beginAtZero:true}}}});}
+function mkModality(m){const ctx=$('#chartModality');charts.mod&&charts.mod.destroy();
+  charts.mod=new Chart(ctx,{type:'doughnut',data:{labels:Object.keys(m),
+    datasets:[{data:Object.values(m),backgroundColor:['#14B8A6','#38BDF8','#6366F1','#F59E0B','#22D3EE'],borderColor:'#0F172A',borderWidth:3}]},
+    options:{maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:12}}}}});}
+function mkLang(L){const ctx=$('#chartLang');charts.lang&&charts.lang.destroy();
+  charts.lang=new Chart(ctx,{type:'bar',data:{labels:L.map(x=>x.name),
+    datasets:[{data:L.map(x=>x.count),backgroundColor:'#38BDF8',borderRadius:5,barThickness:14}]},
+    options:{indexAxis:'y',maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:GRID},beginAtZero:true},y:{grid:{display:false}}}}});}
+function mkTat(ts){const ctx=$('#chartTat');charts.tat&&charts.tat.destroy();
+  charts.tat=new Chart(ctx,{type:'line',data:{labels:ts.map(p=>p.date.slice(5)),
+    datasets:[{data:ts.map(p=>p.sec),borderColor:'#F59E0B',backgroundColor:'rgba(245,158,11,.08)',fill:true,
+      tension:.35,pointRadius:0,borderWidth:2}]},
+    options:{maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:GRID},ticks:{maxTicksLimit:8}},y:{grid:{color:GRID},title:{display:true,text:'seconds'}}}}});}
+
+/* ---- ticker ---- */
+function drawTicker(rows){
+  $('#ticker').innerHTML=rows.slice(0,7).map(r=>`<div class="row"><span class="t">${r.time}</span>
+    <span class="mod">${r.modality}</span><span>${T('metrics.act_report_generated','Report generated')}</span>
+    <span class="loc">${r.location}</span></div>`).join('');
+}
+
+function renderModalityCards(m){
+  const order=['CXR','CT Brain','CT Chest','Dental','MSK'];
+  const max=Math.max(...Object.values(m),1);
+  const el=$('#modalityCards');if(!el)return;
+  el.innerHTML=order.filter(k=>m[k]!=null).map(k=>`<div class="mcard"><div class="mk">${k}</div>
+    <div class="mv">${fmt(m[k])}</div><div class="bar" style="width:${Math.max(8,m[k]/max*100)}%"></div></div>`).join('');
+}
+
+/* ---- render ---- */
+function render(d){
+  if(window.ScanGuruI18n&&ScanGuruI18n.updatePageTranslations){try{ScanGuruI18n.updatePageTranslations();}catch(e){}}
+  if(d.volume){d.vol_daily=d.volume.daily;d.vol_weekly=d.volume.weekly;d.vol_monthly=d.volume.monthly;}
+  $$('[data-key]').forEach(el=>{if(d[el.dataset.key]!=null){animateCount(el,d[el.dataset.key]);showDelta(el.dataset.key,d[el.dataset.key]);}});
+  $('#updated').textContent='updated '+new Date(d.updated||Date.now()).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  if(d.countries_list){drawWorld(d.countries_list);drawList(d.countries_list);
+    $('#reachNote').textContent=d.countries_list.length+' countries · hover a node for detail';}
+  if(d.timeseries)mkScans(d.timeseries);
+  if(d.modalities){mkModality(d.modalities);renderModalityCards(d.modalities);}
+  if(d.languages)mkLang(d.languages);
+  if(d.turnaround)mkTat(d.turnaround);
+  if(d.activity)drawTicker(d.activity);
+}
+
+/* ---- data source ---- */
+async function load(){
+  if(CONFIG.MODE==='live'){
+    $('#previewChip').style.display='none';
+    $('#activityNote').textContent=T('metrics.act_realtime','Real-time feed');
+    $('#srcNote').textContent='Live source: '+CONFIG.API_ENDPOINT;
+    try{
+      const r=await fetch(CONFIG.API_ENDPOINT,{headers:{'Accept':'application/json'}});
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      render(await r.json());
+    }catch(e){
+      $('#updated').textContent='live source unreachable — retrying';
+      console.warn('Metrics fetch failed:',e);
+    }
+  }else{
+    $('#activityNote').textContent=T('metrics.act_sample','Sample feed (preview)');
+    $('#srcNote').textContent='Preview mode — replace SAMPLE data and set CONFIG.MODE = "live".';
+    render(SAMPLE);
+  }
+}
+load();
+if(CONFIG.MODE==='live')setInterval(load,CONFIG.REFRESH_MS);
+</script>
+</body>
+</html>
