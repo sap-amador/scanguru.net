@@ -172,20 +172,26 @@ const ScanGuruI18n = {
     buildDropdown: function() {
         const dropdown = document.getElementById('langDropdown');
         if (!dropdown) return;
+        const self = this;
+        const opt = function(lang){
+            var active = lang.code === self.currentLang;
+            return '<div class="lang-option' + (active?' active':'') + '" data-lang="' + lang.code + '" style="display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;font-size:13px;color:' + (active?'#14B8A6':'#94A3B8') + ';background:' + (active?'rgba(20,184,166,0.15)':'transparent') + ';"><span>' + lang.flag + '</span><span>' + lang.native + '</span></div>';
+        };
+        const hdr = function(label){ return '<div style="padding:8px 12px;font-size:10px;font-weight:600;color:#64748B;text-transform:uppercase;background:#0F172A;position:sticky;top:0;">' + label + '</div>'; };
+        const featured = ['en','es','fr','de','zh','ja','ar','hi'];
+        let html = hdr('Popular');
+        featured.forEach(function(code){ var l = self.languages[code]; if (l) html += opt({ code: code, name: l.name, native: l.native, flag: l.flag, region: l.region, speakers: l.speakers }); });
         const regions = {};
         Object.entries(this.languages).forEach(([code, lang]) => {
+            if (featured.indexOf(code) !== -1) return;
             if (!regions[lang.region]) regions[lang.region] = [];
             regions[lang.region].push({ code, ...lang });
         });
         const regionOrder = ['Americas', 'Europe', 'Asia', 'MENA', 'Africa', 'Oceania'];
-        let html = '';
         regionOrder.forEach(region => {
             if (!regions[region]) return;
-            html += '<div style="padding:8px 12px;font-size:10px;font-weight:600;color:#64748B;text-transform:uppercase;background:#0F172A;position:sticky;top:0;">' + region + '</div>';
-            regions[region].sort((a, b) => b.speakers - a.speakers).forEach(lang => {
-                const isActive = lang.code === this.currentLang;
-                html += '<div class="lang-option' + (isActive ? ' active' : '') + '" data-lang="' + lang.code + '" style="display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;font-size:13px;color:' + (isActive ? '#14B8A6' : '#94A3B8') + ';background:' + (isActive ? 'rgba(20,184,166,0.15)' : 'transparent') + ';"><span>' + lang.flag + '</span><span>' + lang.native + '</span></div>';
-            });
+            html += hdr(region);
+            regions[region].sort((a, b) => b.speakers - a.speakers).forEach(lang => { html += opt(lang); });
         });
         dropdown.innerHTML = html;
         dropdown.querySelectorAll('.lang-option').forEach(opt => {
