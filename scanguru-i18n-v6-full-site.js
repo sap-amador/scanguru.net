@@ -341,8 +341,8 @@ en: { portal: {"stat_training": "Training images", "stat_langs": "Languages", "s
     // Homepage - Hero Section
     home: {
         badge: 'Free Plan Available',
-        title: 'The Complete AI Platform for Medical Imaging',
-        subtitle: '50+ pathologies live across 5 imaging modalities — on a roadmap to 400+ across 17.',
+        title: 'AI-Powered Medical Imaging Analysis for Clinics, Hospitals & Universities',
+        subtitle: 'Surface findings, generate explainable dual-language reports, and support radiologists and researchers across multiple imaging modalities.',
         claim_badge: '50+ live · 400+ on the roadmap',
         stat_modalities: '5',
         stat_modalities_label: 'Modalities',
