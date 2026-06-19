@@ -1367,6 +1367,9 @@
                     <a href="/try" class="btn btn-outline-white btn-lg">
                         Try It Free
                     </a>
+                    <a href="/contact" class="btn btn-outline-white btn-lg" data-i18n="home.cta_demo">
+                        Book a Demo
+                    </a>
                 </div>
             </div>
             
@@ -1439,6 +1442,33 @@
     </section>
 
     <!-- Research Collaborations / Social Proof -->
+    <!-- How It Works / Deployment Flow -->
+    <section class="section section-alt" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">How It Works</div>
+                <h2 class="section-title">From scan to signed report in four steps</h2>
+                <p class="section-subtitle">ScanGuru drops into your existing workflow — upload directly or integrate over your PACS, and every study comes back as an explainable, dual-language report for clinician sign-off.</p>
+            </div>
+            <style>
+              .sg-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;}
+              .sg-flow .sg-step{background:#fff;border:1px solid var(--slate-200);border-radius:var(--radius-lg);padding:28px 24px;position:relative;}
+              .sg-flow .sg-num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700;font-size:16px;margin-bottom:14px;}
+              .sg-flow .sg-ico{font-size:26px;margin-bottom:6px;}
+              .sg-flow h3{margin:0 0 8px;font-size:17px;color:var(--slate-900);}
+              .sg-flow p{margin:0;font-size:14px;line-height:1.6;color:var(--slate-600);}
+              .sg-flow .sg-arrow{position:absolute;top:48px;right:-13px;color:var(--primary);font-size:22px;line-height:1;z-index:2;}
+              @media (max-width:880px){.sg-flow{grid-template-columns:1fr;}.sg-flow .sg-arrow{display:none;}}
+            </style>
+            <div class="sg-flow">
+                <div class="sg-step"><div class="sg-num">1</div><div class="sg-ico">🔗</div><h3>Connect</h3><p>Upload through the web app, or integrate over DICOM/PACS and the REST API at <strong>api.scanguru.net</strong>.</p><span class="sg-arrow">→</span></div>
+                <div class="sg-step"><div class="sg-num">2</div><div class="sg-ico">🧠</div><h3>AI analysis</h3><p>Heterogeneous model ensembles analyze the study across 13+ trained modalities, with explainable attention heatmaps.</p><span class="sg-arrow">→</span></div>
+                <div class="sg-step"><div class="sg-num">3</div><div class="sg-ico">📄</div><h3>Dual-language report</h3><p>A structured PDF in any of 83 languages — clinical, comprehensive, and patient variants, native language alongside English.</p><span class="sg-arrow">→</span></div>
+                <div class="sg-step"><div class="sg-num">4</div><div class="sg-ico">🩺</div><h3>Clinician review</h3><p>Every result is decision support — reviewed and confirmed by a qualified clinician. Research Use Only.</p></div>
+            </div>
+        </div>
+    </section>
+
     <section class="section" id="collaborations">
         <div class="container">
             <div class="section-header">
@@ -1927,6 +1957,9 @@
                     <a href="/overview" class="btn btn-outline-white btn-lg" data-i18n="cta.btn_try">
                         Download Prospectus
                     </a>
+                    <a href="/contact" class="btn btn-outline-white btn-lg" data-i18n="cta.btn_demo">
+                        Book a Demo
+                    </a>
                 </div>
                 
                 <div class="cta-benefits">
@@ -1973,6 +2006,7 @@
                     <li><a href="/technology">Technology</a></li>
                     <li><a href="/evidence">Clinical Evidence</a></li>
                     <li><a href="/security">Security</a></li>
+                    <li><a href="/regulatory" data-i18n="footer.regulatory">Regulatory Status</a></li>
                 </ul>
             </div>
             
