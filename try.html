@@ -1131,7 +1131,12 @@ const SAMPLE_IMAGES = {
         'use strict';
         
         // ===== CONFIGURATION =====
-        const API_BASE = 'https://api.scanguru.net';
+        // TEMPORARY: pointing directly at the Railway origin bypasses Cloudflare,
+        // which is currently overwriting the CORS header with the old Webflow domain.
+        // Once the Cloudflare Transform Rule / Worker is removed, switch this back to
+        // 'https://api.scanguru.net'.
+        const API_BASE = 'https://adorable-simplicity-production.up.railway.app';
+        // const API_BASE = 'https://api.scanguru.net';  // <- revert to this after Cloudflare fix
         
         // Current state
         let currentModality = 'cxr';
