@@ -446,6 +446,27 @@
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style id="sg-compact">
+      /* Tighter, more professional spacing across the site */
+      :root{ --space-16:44px; --space-20:52px; --space-24:60px; }
+      .hero{ padding: calc(72px + var(--space-8)) var(--space-6) var(--space-12) !important; }
+      .hero-container{ gap: var(--space-10) !important; }
+      .hero-subtitle{ font-size:18px !important; margin-bottom: var(--space-6) !important; }
+      .hero-metrics{ gap: var(--space-3) !important; margin-bottom: var(--space-6) !important; }
+      .hero-metric{ padding: var(--space-4) var(--space-3) !important; }
+      .hero-metric-value{ font-size:24px !important; white-space:nowrap !important; }
+      .hero-metric-label{ font-size:11px !important; letter-spacing:.04em !important; }
+      section, .section{ padding: var(--space-20) var(--space-6) !important; }
+      .section-header{ margin: 0 auto var(--space-10) !important; }
+      .modalities-grid{ gap: var(--space-5) !important; }
+      /* support-page (sg-*) system */
+      .sg-hero{ padding: var(--space-20) var(--space-6) !important; }
+      .sg-hero h1{ font-size:36px !important; }
+      .sg-sec{ padding: var(--space-16) var(--space-6) !important; }
+      .sg-lead{ margin-bottom: var(--space-6) !important; }
+      .sg-cta{ padding: var(--space-20) var(--space-6) !important; }
+      .sg-grid{ gap:16px !important; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
