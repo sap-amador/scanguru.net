@@ -1316,7 +1316,7 @@
                 </div>
                 
                 <a href="/contact" class="btn btn-ghost" data-i18n="nav.contact">Contact</a>
-                <a href="https://portal.scanguru.net/portal-login.html" class="btn btn-primary" data-i18n="nav.apply_pilot">Sign Up Free</a>
+                <a href="/signup" class="btn btn-primary" data-i18n="nav.apply_pilot">Sign Up Free</a>
             </div>
         </div>
     </nav>
@@ -1358,7 +1358,7 @@
                 </div>
                 
                 <div class="hero-cta">
-                    <a href="https://portal.scanguru.net/portal-login.html" class="btn btn-white btn-lg" data-i18n="home.cta_pilot">
+                    <a href="/signup" class="btn btn-white btn-lg" data-i18n="home.cta_pilot">
                         Sign Up Free
                         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1809,7 +1809,7 @@
                 </p>
                 
                 <div class="cta-buttons">
-                    <a href="https://portal.scanguru.net/portal-login.html" class="btn btn-white btn-lg" data-i18n="cta.btn_pilot">
+                    <a href="/signup" class="btn btn-white btn-lg" data-i18n="cta.btn_pilot">
                         Sign Up Free
                         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1860,6 +1860,7 @@
                 <h4 class="footer-heading" data-i18n="footer.col_platform">Platform</h4>
                 <ul class="footer-links">
                     <li><a href="/modalities">All Modalities</a></li>
+                    <li><a href="/scanguru-metrics.html" data-i18n="footer.live_metrics">Live Metrics</a></li>
                     <li><a href="/technology">Technology</a></li>
                     <li><a href="/evidence">Clinical Evidence</a></li>
                     <li><a href="/security">Security</a></li>
@@ -1910,12 +1911,12 @@
     <!-- ScanGuru — Compliance Footer (Launch Playbook wording, verbatim) -->
     <div class="sg-compliance-footer" role="note" aria-label="Regulatory notice"
          style="margin:0;padding:14px 18px;background:#0F172A;color:#E2E8F0;
-                border-top:2px solid #F59E0B;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
+                border-top:1px solid #334155;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
                 font-size:12.5px;line-height:1.55;text-align:center;">
       <div style="max-width:960px;margin:0 auto;">
-        <strong style="color:#FCD34D;">Clinician-reviewed decision support.</strong>
+        <strong style="color:#CBD5E1;">Clinician-reviewed decision support.</strong>
         AI output must be reviewed and confirmed by a qualified clinician before any clinical decision.
-        <span style="display:inline-block;margin-left:6px;color:#FCD34D;font-weight:600;">
+        <span style="display:inline-block;margin-left:6px;color:#CBD5E1;font-weight:600;">
           Market-specific regulatory registration in progress — currently offered for Research Use Only.
         </span>
         <div style="margin-top:6px;color:#94A3B8;font-size:11.5px;">
@@ -1926,6 +1927,6 @@
 
     <!-- ScanGuru i18n v6.3.0 — single unified engine (83 languages, auto-init on load, RTL) -->
     <script src="https://cdn.jsdelivr.net/gh/sap-amador/scanguru.net@main/scanguru-i18n-v6-full-site.js"></script>
-<script id="modality-card-click">document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".modality-card").forEach(function(c){var a=c.querySelector("a.modality-link");if(!a)return;c.style.cursor="pointer";c.addEventListener("click",function(e){if(!e.target.closest("a"))window.location.href=a.getAttribute("href");});});});</script>
+<script id="modality-card-click">document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.modality-card').forEach(function(c){var a=c.querySelector('a.modality-link');if(!a)return;c.style.cursor='pointer';c.addEventListener('click',function(e){if(!e.target.closest('a'))window.location.href=a.getAttribute('href');});});});</script>
 </body>
 </html>
