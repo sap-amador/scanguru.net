@@ -682,6 +682,23 @@
         }
         
         /* PDF Viewer */
+        .report-tabs { display:flex; gap:4px; border-bottom:2px solid var(--slate-200); }
+        .report-tab { flex:1; min-width:0; padding:10px 12px; background:var(--slate-50);
+            border:1px solid var(--slate-200); border-bottom:none; border-radius:8px 8px 0 0;
+            cursor:pointer; text-align:center; font-family:inherit; font-size:13px;
+            color:var(--slate-600); position:relative; top:2px; transition:all .15s; }
+        .report-tab:hover:not(.is-disabled) { background:var(--slate-100); color:var(--slate-800); }
+        .report-tab.active { background:white; border-color:var(--primary); color:var(--slate-900);
+            font-weight:700; border-bottom:2px solid white; }
+        .report-tab .rt-title { display:block; font-weight:700; }
+        .report-tab .rt-sub { display:block; font-size:11px; color:var(--slate-500); margin-top:2px; }
+        .report-tab.active .rt-sub { color:var(--primary-dark); }
+        .report-tab.is-error .rt-sub { color:#dc2626; }
+        .report-tab .rt-spin { display:inline-block; width:10px; height:10px;
+            border:2px solid var(--slate-300); border-top-color:var(--primary); border-radius:50%;
+            animation:rtspin .8s linear infinite; margin-right:5px; vertical-align:middle; }
+        @keyframes rtspin { to { transform:rotate(360deg); } }
+        .report-tabs + .pdf-viewer { border-radius:0 0 12px 12px; border-top:none; }
         .pdf-viewer {
             width: 100%;
             height: 700px;
@@ -1601,66 +1618,148 @@ const SAMPLE_IMAGES = {
             dropZone.querySelector('.file-input-hint').textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
         }
         
-        // ===== API SUBMISSION =====
-        async function submitAnalysis(formData) {
+        // ===== API SUBMISSION (3 reports: clinical, research, patient) =====
+        const REPORTS = [
+            { key: 'clinical', title: '🩺 Clinical', sub: 'fast scan' },
+            { key: 'research', title: '🔬 Research', sub: 'full analysis' },
+            { key: 'patient',  title: '👨‍👩‍👧 Patient', sub: 'plain-language' },
+        ];
+        const _pdfUrls = { clinical: null, research: null, patient: null };
+
+        async function submitAnalysis(formDataBase) {
             const overlay = document.getElementById('processingOverlay');
             const status = document.getElementById('processingStatus');
             const errorDiv = document.getElementById('errorMessage');
-            
-            // Reset UI
+
+            // Reset UI + build the tab shell up front
             errorDiv.classList.remove('show');
             overlay.classList.add('show');
             updateProcessingStep(1);
             status.textContent = 'Uploading scan...';
-            
-            try {
-                // Build URL with language parameter
-                const url = `${API_BASE}/predict_with_report?lang=${currentLanguage}`;
-                console.log('📤 POST', url);
-                console.log('📄 Language:', currentLanguage);
-                
-                updateProcessingStep(2);
-                status.textContent = 'Running AI models...';
-                
-                const response = await fetch(url, {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                if (!response.ok) {
-                    const errText = await response.text();
-                    throw new Error(errText || `HTTP ${response.status}`);
+            _pdfUrls.clinical = _pdfUrls.research = _pdfUrls.patient = null;
+            renderReportTabs();
+
+            // Each report gets its OWN timeout window (independent calls) so a slow
+            // 3rd report can't be killed by time the first two already spent.
+            const perCallMs = 180000; // 3 min per report (single image)
+            let firstSuccess = null;
+
+            updateProcessingStep(2);
+            for (const r of REPORTS) {
+                status.textContent = `Generating ${r.title} report...`;
+                setReportTabLoading(r.key);
+                try {
+                    const res = await submitOnce(formDataBase, r.key, perCallMs);
+                    _pdfUrls[r.key] = res.url;
+                    setReportTabReady(r.key, res.pageCount);
+                    if (!firstSuccess) { firstSuccess = r.key; switchReportTab(r.key); }
+                } catch (err) {
+                    console.error(`[Try] ${r.key} failed:`, err);
+                    const msg = (err.name === 'AbortError') ? 'timed out — retry' : 'failed — retry';
+                    setReportTabError(r.key, msg);
                 }
-                
-                const data = await response.json();
-                console.log('📥 Response:', data);
-                
-                // Check for async job (MRI, PET, CT Chest)
-                if (data.async && data.job_id) {
-                    updateProcessingStep(3);
-                    status.textContent = `Processing... (polling for results)`;
-                    await pollJob(data.job_id);
-                } else {
-                    // Immediate result
-                    updateProcessingStep(4);
-                    status.textContent = 'Generating report...';
-                    await sleep(500);
-                    showResult(data);
-                }
-                
-            } catch (err) {
-                console.error('❌ Error:', err);
-                showError(`Analysis failed: ${err.message}`);
-            } finally {
-                overlay.classList.remove('show');
+            }
+
+            overlay.classList.remove('show');
+            if (firstSuccess) {
+                updateProcessingStep(4);
+            } else {
+                showError('All reports failed to generate. The server may be under load — please try again.');
             }
         }
+
+        // Fire ONE report. Clones the base FormData (single-use for the file blob),
+        // sets report_type, and uses a per-call AbortController + timer.
+        async function submitOnce(formDataBase, reportType, perCallMs) {
+            const fd = new FormData();
+            for (const [k, v] of formDataBase.entries()) fd.append(k, v);
+            fd.set('lang', currentLanguage);
+            fd.set('input_type', 'image');
+            fd.set('report_type', reportType);
+
+            const url = `${API_BASE}/predict_with_report?lang=${encodeURIComponent(currentLanguage)}&report_type=${encodeURIComponent(reportType)}`;
+            console.log(`📤 POST ${url}`);
+
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), perCallMs);
+            let response;
+            try {
+                response = await fetch(url, { method: 'POST', body: fd, signal: controller.signal });
+            } finally {
+                clearTimeout(timer);
+            }
+
+            if (!response.ok) {
+                const t = await response.text();
+                throw new Error(t ? t.slice(0, 200) : `HTTP ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(`📥 ${reportType}:`, data);
+
+            if (data.async && data.job_id) {
+                return await pollJob(data.job_id); // -> { url, pageCount }
+            }
+            return { url: data.pdf_url, pageCount: data.page_count };
+        }
+
+        // ===== REPORT TAB UI =====
+        function renderReportTabs() {
+            const c = document.getElementById('resultsContent');
+            const tabs = REPORTS.map((r, i) => `
+                <button type="button" class="report-tab${i === 0 ? ' active' : ''}" data-rk="${r.key}" onclick="switchReportTab('${r.key}')">
+                    <span class="rt-title">${r.title}</span>
+                    <span class="rt-sub">${r.sub}</span>
+                </button>`).join('');
+            c.innerHTML = `
+                <div class="report-tabs">${tabs}</div>
+                <div class="pdf-viewer"><iframe id="reportFrame" title="Analysis Report" style="width:100%;height:100%;border:none;"></iframe></div>
+                <div class="results-actions" id="reportActions"></div>`;
+        }
+        function _tab(key) { return document.querySelector(`.report-tab[data-rk="${key}"]`); }
+        function _sub(key) { const t = _tab(key); return t ? t.querySelector('.rt-sub') : null; }
+        function setReportTabLoading(key) {
+            const t = _tab(key); if (!t) return;
+            t.classList.remove('is-error');
+            const s = _sub(key);
+            if (s) s.innerHTML = `<span class="rt-spin"></span>generating…`;
+        }
+        function setReportTabReady(key, pageCount) {
+            const t = _tab(key); if (!t) return;
+            t.classList.remove('is-error');
+            const base = REPORTS.find(r => r.key === key).sub;
+            const pages = (pageCount && pageCount > 0) ? `${pageCount} page${pageCount === 1 ? '' : 's'} • ` : '';
+            const s = _sub(key);
+            if (s) s.textContent = `${pages}${base}`;
+        }
+        function setReportTabError(key, msg) {
+            const t = _tab(key); if (!t) return;
+            t.classList.add('is-error');
+            const s = _sub(key);
+            if (s) s.textContent = `⚠ ${msg}`;
+        }
+        window.switchReportTab = function (key) {
+            document.querySelectorAll('.report-tab').forEach(t => t.classList.toggle('active', t.dataset.rk === key));
+            const frame = document.getElementById('reportFrame');
+            const actions = document.getElementById('reportActions');
+            const url = _pdfUrls[key];
+            if (url) {
+                if (frame) frame.src = url;
+                if (actions) actions.innerHTML = `
+                    <a href="${url}" target="_blank" class="primary">📄 Open in New Tab</a>
+                    <a href="${url}" download class="secondary">⬇️ Download PDF</a>`;
+            } else {
+                const t = _tab(key);
+                const errored = t && t.classList.contains('is-error');
+                if (frame) frame.removeAttribute('src');
+                if (actions) actions.innerHTML = `<span style="color:var(--slate-500);font-size:13px;">${errored ? 'This report failed — try analysing again.' : 'Generating this report…'}</span>`;
+            }
+        };
         
         // ===== POLL FOR ASYNC JOB =====
         async function pollJob(jobId) {
             const status = document.getElementById('processingStatus');
             const pollUrl = `${API_BASE}/job/${jobId}`;
-            const maxAttempts = 60; // 2 minutes max
+            const maxAttempts = 75; // 2.5 minutes max
             
             for (let i = 0; i < maxAttempts; i++) {
                 await sleep(2000);
@@ -1670,12 +1769,10 @@ const SAMPLE_IMAGES = {
                     const data = await resp.json();
                     
                     console.log(`📊 Poll ${i+1}: ${data.status}`);
-                    status.textContent = `Processing... (${data.status})`;
+                    if (status) status.textContent = `Processing... (${data.status})`;
                     
                     if (data.status === 'complete') {
-                        updateProcessingStep(4);
-                        showResult(data);
-                        return;
+                        return { url: data.pdf_url, pageCount: data.page_count };
                     } else if (data.status === 'error') {
                         throw new Error(data.error || 'Processing failed');
                     }
