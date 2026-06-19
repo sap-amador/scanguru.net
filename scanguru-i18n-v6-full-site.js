@@ -2003,7 +2003,7 @@ de: {
         comparison: { badge: 'Warum ScanGuru', title: 'Umfassende Lösung vs. Einzellösungen', subtitle: 'Sehen Sie, wie eine einheitliche Plattform im Vergleich zur Verwaltung mehrerer spezialisierter Anbieter abschneidet.', note: 'Eine einheitliche Plattform bedeutet einfachere Integration, ein konsistentes Benutzererlebnis, geringere Gesamtbetriebskosten und umfassende Abdeckung, ohne mehrere Anbieterbeziehungen verwalten zu müssen.', },
     brand: { name: 'ScanGuru', tagline: 'KI-gestützte medizinische Bildgebung' },
     nav: { platform: 'Plattform', modalities: 'Modalitäten', technology: 'Technologie', clinical_evidence: 'Klinische Evidenz', about: 'Über Uns', contact: 'Kontakt', try_free: 'Kostenlos Testen', apply_pilot: 'Kostenlos Registrieren', login: 'Anmelden', all_solutions: 'Alle Lösungen', chest_xray: 'Thorax-Röntgen', ct_imaging: 'CT-Bildgebung', mammography: 'Mammographie', mri_suite: 'MRT-Suite', msk_xray: 'MSK-Röntgen', dental: 'Dental', ultrasound: 'Ultraschall', pet_scan: 'PET-Scan' },
-    home: { badge: 'Kostenloser Plan Verfügbar', title: 'Die Komplette KI-Plattform für Medizinische Bildgebung', subtitle: 'Multi-modale Fusions-KI analysiert 50+ Pathologien in 8 Modalitäten.', stat_modalities: '5', stat_modalities_label: 'Modalitäten', stat_pathologies: '50+', stat_pathologies_label: 'Pathologien', stat_languages: '83', stat_languages_label: 'Sprachen', stat_accuracy: '85-95%', stat_accuracy_label: 'Genauigkeit', cta_pilot: 'Kostenlos Registrieren', cta_try: 'Kostenlos Testen' },
+    home: { badge: 'Kostenloser Plan Verfügbar', title: 'Die Komplette KI-Plattform für Medizinische Bildgebung', subtitle: 'Multi-modale Fusions-KI analysiert 50+ Pathologien in 5 Modalitäten.', stat_modalities: '5', stat_modalities_label: 'Modalitäten', stat_pathologies: '50+', stat_pathologies_label: 'Pathologien', stat_languages: '83', stat_languages_label: 'Sprachen', stat_accuracy: '85-95%', stat_accuracy_label: 'Genauigkeit', cta_pilot: 'Kostenlos Registrieren', cta_try: 'Kostenlos Testen' },
     trust_bar: { iso: 'ISO 27001', title: 'Vertraut von Führenden Gesundheitseinrichtungen', hipaa: 'HIPAA-konform', gdpr: 'DSGVO-bereit', dicom: 'DICOM-kompatibel', hl7: 'HL7/FHIR-Integration', cloud: 'Cloud & On-Premise' },
     modalities_section: { badge: 'Umfassende Abdeckung', title: 'Eine Plattform, Jede Modalität', subtitle: 'Von Thorax-Röntgen bis zu fortgeschrittener CT-Bildgebung deckt unsere KI das gesamte Spektrum ab.', view_all: 'Alle Modalitäten', cxr_title: 'Thorax-Röntgen', cxr_desc: '50+ Pathologie-Erkennung mit Kardiomegalie-Bewertung', ct_title: 'CT-Bildgebung', ct_desc: 'Hirnblutung, Lungenknoten und Trauma-Erkennung', mammo_title: 'Mammographie', mammo_desc: 'BI-RADS-Klassifikation und Läsionserkennung', mri_title: 'MRT-Suite', mri_desc: 'Gehirn-, Wirbelsäulen- und muskuloskelettale Analyse', msk_title: 'MSK-Röntgen', msk_desc: 'Frakturerkennung und Knochenanomalien', dental_title: 'Dental', dental_desc: 'Panorama- und periapikale Analyse', ultrasound_title: 'Ultraschall', ultrasound_desc: 'Abdominale und geburtshilfliche Bildgebung', pet_title: 'PET-Scan', pet_desc: 'Onkologie und metabolische Bildgebung' },
     features: { badge: 'Warum ScanGuru', title: 'Für Klinische Exzellenz Entwickelt', subtitle: 'Enterprise-KI, die sich nahtlos in Ihren Workflow integriert.', f1_title: 'Multi-Modell-Ensemble', f1_desc: 'Mehrere KI-Modelle arbeiten zusammen für höhere Genauigkeit.', f2_title: 'Echtzeit-Analyse', f2_desc: 'Ergebnisse in unter 60 Sekunden mit automatischer Priorisierung.', f3_title: 'Nahtlose Integration', f3_desc: 'Funktioniert mit Ihrem PACS, RIS und EMR via HL7/FHIR.', f4_title: 'Audit-Trail', f4_desc: 'Vollständige Protokollierung für regulatorische Anforderungen.' },
@@ -2037,7 +2037,7 @@ es: {
         comparison: { badge: 'Por qué ScanGuru', title: 'Solución integral frente a soluciones puntuales', subtitle: 'Vea cómo una plataforma unificada se compara con gestionar múltiples proveedores especializados.', note: 'Una plataforma unificada significa una integración más sencilla, una experiencia de usuario coherente, un menor costo total de propiedad y una cobertura integral sin gestionar múltiples relaciones con proveedores.', },
     brand: { name: 'ScanGuru', tagline: 'Imágenes Médicas con IA' },
     nav: { platform: 'Plataforma', modalities: 'Modalidades', technology: 'Tecnología', clinical_evidence: 'Evidencia Clínica', about: 'Nosotros', contact: 'Contacto', try_free: 'Prueba Gratis', apply_pilot: 'Registro Gratuito', login: 'Iniciar Sesión', all_solutions: 'Todas las Soluciones', chest_xray: 'Radiografía de Tórax', ct_imaging: 'Imágenes CT', mammography: 'Mamografía', mri_suite: 'Suite MRI', msk_xray: 'Radiografía MSK', dental: 'Dental', ultrasound: 'Ultrasonido', pet_scan: 'PET Scan' },
-    home: { badge: 'Plan Gratuito Disponible', title: 'La Plataforma Completa de IA para Imágenes Médicas', subtitle: 'IA de fusión multimodal analiza 50+ patologías en 8 modalidades.', stat_modalities: '5', stat_modalities_label: 'Modalidades', stat_pathologies: '50+', stat_pathologies_label: 'Patologías', stat_languages: '83', stat_languages_label: 'Idiomas', stat_accuracy: '85-95%', stat_accuracy_label: 'Precisión', cta_pilot: 'Registro Gratuito', cta_try: 'Prueba Gratis — Sin Cuenta' },
+    home: { badge: 'Plan Gratuito Disponible', title: 'La Plataforma Completa de IA para Imágenes Médicas', subtitle: 'IA de fusión multimodal analiza 50+ patologías en 5 modalidades.', stat_modalities: '5', stat_modalities_label: 'Modalidades', stat_pathologies: '50+', stat_pathologies_label: 'Patologías', stat_languages: '83', stat_languages_label: 'Idiomas', stat_accuracy: '85-95%', stat_accuracy_label: 'Precisión', cta_pilot: 'Registro Gratuito', cta_try: 'Prueba Gratis — Sin Cuenta' },
     trust_bar: { iso: 'ISO 27001', title: 'Confiado por Líderes en Salud', hipaa: 'Cumple HIPAA', gdpr: 'Listo para GDPR', dicom: 'Compatible DICOM', hl7: 'Integración HL7/FHIR', cloud: 'Nube y Local' },
     modalities_section: { badge: 'Cobertura Integral', title: 'Una Plataforma, Cada Modalidad', subtitle: 'Desde radiografías de tórax hasta imágenes CT avanzadas, nuestra IA cubre todo el espectro.', view_all: 'Ver Todas las Modalidades', cxr_title: 'Radiografía de Tórax', cxr_desc: 'Detección de 50+ patologías con puntuación de cardiomegalia', ct_title: 'Imágenes CT', ct_desc: 'Hemorragia cerebral, nódulos pulmonares y detección de trauma', mammo_title: 'Mamografía', mammo_desc: 'Clasificación BI-RADS y detección de lesiones', mri_title: 'Suite MRI', mri_desc: 'Análisis de cerebro, columna y musculoesquelético', msk_title: 'Radiografía MSK', msk_desc: 'Detección de fracturas y anomalías óseas', dental_title: 'Dental', dental_desc: 'Análisis panorámico y periapical', ultrasound_title: 'Ultrasonido', ultrasound_desc: 'Imágenes abdominales y obstétricas', pet_title: 'PET Scan', pet_desc: 'Oncología e imágenes metabólicas' },
     features: { badge: 'Por Qué ScanGuru', title: 'Diseñado para Excelencia Clínica', subtitle: 'IA empresarial que se integra perfectamente en su flujo de trabajo.', f1_title: 'Conjunto Multi-Modelo', f1_desc: 'Múltiples modelos de IA trabajan juntos para mayor precisión.', f2_title: 'Análisis en Tiempo Real', f2_desc: 'Resultados en menos de 60 segundos con priorización automática.', f3_title: 'Integración Perfecta', f3_desc: 'Funciona con su PACS, RIS y EMR via HL7/FHIR.', f4_title: 'Auditoría Completa', f4_desc: 'Registro completo para requisitos regulatorios.' },
@@ -2071,7 +2071,7 @@ fr: {
         comparison: { badge: 'Pourquoi ScanGuru', title: 'Solution complète vs. solutions ponctuelles', subtitle: 'Découvrez comment une plateforme unifiée se compare à la gestion de plusieurs fournisseurs spécialisés.', note: 'Une plateforme unifiée signifie une intégration plus simple, une expérience utilisateur cohérente, un coût total de possession réduit et une couverture complète sans gérer de multiples relations fournisseurs.', },
     brand: { name: 'ScanGuru', tagline: 'Imagerie Médicale par IA' },
     nav: { platform: 'Plateforme', modalities: 'Modalités', technology: 'Technologie', clinical_evidence: 'Preuves Cliniques', about: 'À Propos', contact: 'Contact', try_free: 'Essai Gratuit', apply_pilot: 'Inscription Gratuite', login: 'Connexion', all_solutions: 'Toutes les Solutions', chest_xray: 'Radiographie Thoracique', ct_imaging: 'Imagerie CT', mammography: 'Mammographie', mri_suite: 'Suite IRM', msk_xray: 'Radiographie MSK', dental: 'Dentaire', ultrasound: 'Échographie', pet_scan: 'TEP Scan' },
-    home: { badge: 'Plan Gratuit Disponible', title: 'La Plateforme IA Complète pour l\'Imagerie Médicale', subtitle: 'IA de fusion multimodale analysant 50+ pathologies dans 8 modalités.', stat_modalities: '5', stat_modalities_label: 'Modalités', stat_pathologies: '50+', stat_pathologies_label: 'Pathologies', stat_languages: '83', stat_languages_label: 'Langues', stat_accuracy: '85-95%', stat_accuracy_label: 'Précision', cta_pilot: 'Inscription Gratuite', cta_try: 'Essai Gratuit — Sans Compte' },
+    home: { badge: 'Plan Gratuit Disponible', title: 'La Plateforme IA Complète pour l\'Imagerie Médicale', subtitle: 'IA de fusion multimodale analysant 50+ pathologies dans 5 modalités.', stat_modalities: '5', stat_modalities_label: 'Modalités', stat_pathologies: '50+', stat_pathologies_label: 'Pathologies', stat_languages: '83', stat_languages_label: 'Langues', stat_accuracy: '85-95%', stat_accuracy_label: 'Précision', cta_pilot: 'Inscription Gratuite', cta_try: 'Essai Gratuit — Sans Compte' },
     trust_bar: { iso: 'ISO 27001', title: 'Approuvé par les Leaders de la Santé', hipaa: 'Conforme HIPAA', gdpr: 'Prêt RGPD', dicom: 'Compatible DICOM', hl7: 'Intégration HL7/FHIR', cloud: 'Cloud et Sur Site' },
     modalities_section: { badge: 'Couverture Complète', title: 'Une Plateforme, Chaque Modalité', subtitle: 'Des radiographies thoraciques à l\'imagerie CT avancée, notre IA couvre tout le spectre.', view_all: 'Voir Toutes les Modalités', cxr_title: 'Radiographie Thoracique', cxr_desc: 'Détection de 50+ pathologies avec score de cardiomégalie', ct_title: 'Imagerie CT', ct_desc: 'Hémorragie cérébrale, nodules pulmonaires et détection de trauma', mammo_title: 'Mammographie', mammo_desc: 'Classification BI-RADS et détection de lésions', mri_title: 'Suite IRM', mri_desc: 'Analyse cérébrale, spinale et musculosquelettique', msk_title: 'Radiographie MSK', msk_desc: 'Détection de fractures et anomalies osseuses', dental_title: 'Dentaire', dental_desc: 'Analyse panoramique et périapicale', ultrasound_title: 'Échographie', ultrasound_desc: 'Imagerie abdominale et obstétrique', pet_title: 'TEP Scan', pet_desc: 'Oncologie et imagerie métabolique' },
     features: { badge: 'Pourquoi ScanGuru', title: 'Conçu pour l\'Excellence Clinique', subtitle: 'IA entreprise qui s\'intègre parfaitement dans votre workflow.', f1_title: 'Ensemble Multi-Modèles', f1_desc: 'Plusieurs modèles IA travaillent ensemble pour une meilleure précision.', f2_title: 'Analyse en Temps Réel', f2_desc: 'Résultats en moins de 60 secondes avec priorisation automatique.', f3_title: 'Intégration Transparente', f3_desc: 'Fonctionne avec votre PACS, RIS et EMR via HL7/FHIR.', f4_title: 'Piste d\'Audit', f4_desc: 'Journalisation complète pour les exigences réglementaires.' },
@@ -2104,7 +2104,7 @@ fr: {
 hi: {
     brand: { name: 'ScanGuru', tagline: 'AI-संचालित मेडिकल इमेजिंग' },
     nav: { platform: 'प्लेटफ़ॉर्म', modalities: 'मोडैलिटीज़', technology: 'तकनीक', clinical_evidence: 'क्लिनिकल साक्ष्य', about: 'हमारे बारे में', contact: 'संपर्क', try_free: 'मुफ्त आज़माएं', apply_pilot: 'मुफ्त साइन अप करें', login: 'लॉगिन', all_solutions: 'सभी समाधान', chest_xray: 'छाती का एक्स-रे', ct_imaging: 'CT इमेजिंग', mammography: 'मैमोग्राफी', mri_suite: 'MRI सुइट', msk_xray: 'MSK एक्स-रे', dental: 'डेंटल', ultrasound: 'अल्ट्रासाउंड', pet_scan: 'PET स्कैन' },
-    home: { badge: 'मुफ्त प्लान उपलब्ध', title: 'मेडिकल इमेजिंग के लिए संपूर्ण AI प्लेटफ़ॉर्म', subtitle: 'मल्टी-मोडल फ्यूजन AI 8 मोडैलिटीज़ में 50+ पैथोलॉजीज़ का विश्लेषण करता है।', stat_modalities: '5', stat_modalities_label: 'मोडैलिटीज़', stat_pathologies: '50+', stat_pathologies_label: 'पैथोलॉजीज़', stat_languages: '83', stat_languages_label: 'भाषाएं', stat_accuracy: '85-95%', stat_accuracy_label: 'सटीकता', cta_pilot: 'मुफ्त साइन अप करें', cta_try: 'मुफ्त आज़माएं — कोई खाता नहीं' },
+    home: { badge: 'मुफ्त प्लान उपलब्ध', title: 'मेडिकल इमेजिंग के लिए संपूर्ण AI प्लेटफ़ॉर्म', subtitle: 'मल्टी-मोडल फ्यूजन AI 5 मोडैलिटीज़ में 50+ पैथोलॉजीज़ का विश्लेषण करता है।', stat_modalities: '5', stat_modalities_label: 'मोडैलिटीज़', stat_pathologies: '50+', stat_pathologies_label: 'पैथोलॉजीज़', stat_languages: '83', stat_languages_label: 'भाषाएं', stat_accuracy: '85-95%', stat_accuracy_label: 'सटीकता', cta_pilot: 'मुफ्त साइन अप करें', cta_try: 'मुफ्त आज़माएं — कोई खाता नहीं' },
     trust_bar: { title: 'स्वास्थ्य नेताओं द्वारा विश्वसनीय', hipaa: 'HIPAA अनुपालन', gdpr: 'GDPR तैयार', dicom: 'DICOM संगत', hl7: 'HL7/FHIR इंटीग्रेशन', cloud: 'क्लाउड और ऑन-प्रिमाइस' },
     modalities_section: { badge: 'व्यापक कवरेज', title: 'एक प्लेटफ़ॉर्म, हर मोडैलिटी', subtitle: 'छाती के एक्स-रे से लेकर उन्नत CT इमेजिंग तक, हमारा AI पूरे स्पेक्ट्रम को कवर करता है।', view_all: 'सभी मोडैलिटीज़ देखें', cxr_title: 'छाती का एक्स-रे', cxr_desc: 'कार्डियोमेगाली स्कोरिंग के साथ 50+ पैथोलॉजी डिटेक्शन', ct_title: 'CT इमेजिंग', ct_desc: 'ब्रेन हेमरेज, चेस्ट नोड्यूल्स और ट्रॉमा डिटेक्शन', mammo_title: 'मैमोग्राफी', mammo_desc: 'BI-RADS क्लासिफिकेशन और लेसियन डिटेक्शन', mri_title: 'MRI सुइट', mri_desc: 'ब्रेन, स्पाइन और मस्कुलोस्केलेटल विश्लेषण', msk_title: 'MSK एक्स-रे', msk_desc: 'फ्रैक्चर डिटेक्शन और बोन असामान्यताएं', dental_title: 'डेंटल', dental_desc: 'पैनोरामिक और पेरीएपिकल विश्लेषण', ultrasound_title: 'अल्ट्रासाउंड', ultrasound_desc: 'एब्डोमिनल और प्रसूति इमेजिंग', pet_title: 'PET स्कैन', pet_desc: 'ऑन्कोलॉजी और मेटाबॉलिक इमेजिंग' },
     features: { badge: 'ScanGuru क्यों', title: 'क्लिनिकल उत्कृष्टता के लिए बनाया गया', subtitle: 'एंटरप्राइज़-ग्रेड AI जो आपके वर्कफ़्लो में सहजता से इंटीग्रेट होता है।', f1_title: 'मल्टी-मॉडल एन्सेम्बल', f1_desc: 'उच्च सटीकता के लिए कई AI मॉडल एक साथ काम करते हैं।', f2_title: 'रियल-टाइम विश्लेषण', f2_desc: 'ऑटो प्रायोरिटाइज़ेशन के साथ 60 सेकंड से कम में परिणाम।', f3_title: 'सहज इंटीग्रेशन', f3_desc: 'HL7/FHIR के माध्यम से आपके PACS, RIS और EMR के साथ काम करता है।', f4_title: 'ऑडिट ट्रेल', f4_desc: 'रेगुलेटरी आवश्यकताओं के लिए पूर्ण लॉगिंग।' },
@@ -2137,7 +2137,7 @@ hi: {
 zh: {
     brand: { name: 'ScanGuru', tagline: 'AI医学影像' },
     nav: { platform: '平台', modalities: '模态', technology: '技术', clinical_evidence: '临床证据', about: '关于我们', contact: '联系我们', try_free: '免费试用', apply_pilot: '免费注册', login: '登录', all_solutions: '所有解决方案', chest_xray: '胸部X光', ct_imaging: 'CT成像', mammography: '乳腺摄影', mri_suite: 'MRI套件', msk_xray: 'MSK X光', dental: '牙科', ultrasound: '超声波', pet_scan: 'PET扫描' },
-    home: { badge: '免费计划可用', title: '完整的医学影像AI平台', subtitle: '多模态融合AI在8种模态中分析50+种病理。', stat_modalities: '5', stat_modalities_label: '模态', stat_pathologies: '50+', stat_pathologies_label: '病理', stat_languages: '83', stat_languages_label: '语言', stat_accuracy: '85-95%', stat_accuracy_label: '准确率', cta_pilot: '免费注册', cta_try: '免费试用 — 无需账户' },
+    home: { badge: '免费计划可用', title: '完整的医学影像AI平台', subtitle: '多模态融合AI在5种模态中分析50+种病理。', stat_modalities: '5', stat_modalities_label: '模态', stat_pathologies: '50+', stat_pathologies_label: '病理', stat_languages: '83', stat_languages_label: '语言', stat_accuracy: '85-95%', stat_accuracy_label: '准确率', cta_pilot: '免费注册', cta_try: '免费试用 — 无需账户' },
     trust_bar: { title: '受医疗领导者信赖', hipaa: 'HIPAA合规', gdpr: 'GDPR就绪', dicom: 'DICOM兼容', hl7: 'HL7/FHIR集成', cloud: '云端和本地' },
     modalities_section: { badge: '全面覆盖', title: '一个平台，所有模态', subtitle: '从胸部X光到高级CT成像，我们的AI覆盖整个诊断影像范围。', view_all: '查看所有模态', cxr_title: '胸部X光', cxr_desc: '50+病理检测与心脏肿大评分', ct_title: 'CT成像', ct_desc: '脑出血、肺结节和创伤检测', mammo_title: '乳腺摄影', mammo_desc: 'BI-RADS分类和病变检测', mri_title: 'MRI套件', mri_desc: '脑、脊柱和肌肉骨骼分析', msk_title: 'MSK X光', msk_desc: '骨折检测和骨骼异常', dental_title: '牙科', dental_desc: '全景和根尖周分析', ultrasound_title: '超声波', ultrasound_desc: '腹部和产科成像', pet_title: 'PET扫描', pet_desc: '肿瘤学和代谢成像' },
     features: { badge: '为何选择ScanGuru', title: '为临床卓越而构建', subtitle: '企业级AI无缝集成到您的工作流程。', f1_title: '多模型集成', f1_desc: '多个AI模型协同工作以提高准确性。', f2_title: '实时分析', f2_desc: '60秒内出结果，自动优先处理关键发现。', f3_title: '无缝集成', f3_desc: '通过HL7/FHIR与您的PACS、RIS和EMR配合使用。', f4_title: '审计追踪', f4_desc: '满足监管要求的完整日志记录。' },
@@ -2170,7 +2170,7 @@ zh: {
 ar: {
     brand: { name: 'ScanGuru', tagline: 'التصوير الطبي بالذكاء الاصطناعي' },
     nav: { platform: 'المنصة', modalities: 'الطرائق', technology: 'التكنولوجيا', clinical_evidence: 'الأدلة السريرية', about: 'من نحن', contact: 'اتصل بنا', try_free: 'جرب مجاناً', apply_pilot: 'سجل مجاناً', login: 'تسجيل الدخول', all_solutions: 'جميع الحلول', chest_xray: 'أشعة الصدر', ct_imaging: 'التصوير المقطعي', mammography: 'تصوير الثدي', mri_suite: 'جناح الرنين المغناطيسي', msk_xray: 'أشعة العضلات والعظام', dental: 'طب الأسنان', ultrasound: 'الموجات فوق الصوتية', pet_scan: 'مسح PET' },
-    home: { badge: 'خطة مجانية متاحة', title: 'المنصة الكاملة للتصوير الطبي بالذكاء الاصطناعي', subtitle: 'ذكاء اصطناعي متعدد الوسائط يحلل أكثر من 50 مرض في 8 طرائق.', stat_modalities: '5', stat_modalities_label: 'طرائق', stat_pathologies: '50+', stat_pathologies_label: 'أمراض', stat_languages: '83', stat_languages_label: 'لغة', stat_accuracy: '85-95%', stat_accuracy_label: 'الدقة', cta_pilot: 'سجل مجاناً', cta_try: 'جرب مجاناً — بدون حساب' },
+    home: { badge: 'خطة مجانية متاحة', title: 'المنصة الكاملة للتصوير الطبي بالذكاء الاصطناعي', subtitle: 'ذكاء اصطناعي متعدد الوسائط يحلل أكثر من 50 مرض في 5 طرائق.', stat_modalities: '5', stat_modalities_label: 'طرائق', stat_pathologies: '50+', stat_pathologies_label: 'أمراض', stat_languages: '83', stat_languages_label: 'لغة', stat_accuracy: '85-95%', stat_accuracy_label: 'الدقة', cta_pilot: 'سجل مجاناً', cta_try: 'جرب مجاناً — بدون حساب' },
     trust_bar: { title: 'موثوق من قادة الرعاية الصحية', hipaa: 'متوافق مع HIPAA', gdpr: 'جاهز لـ GDPR', dicom: 'متوافق مع DICOM', hl7: 'تكامل HL7/FHIR', cloud: 'سحابي ومحلي' },
     modalities_section: { badge: 'تغطية شاملة', title: 'منصة واحدة، كل الطرائق', subtitle: 'من أشعة الصدر إلى التصوير المقطعي المتقدم، يغطي ذكاؤنا الاصطناعي الطيف الكامل.', view_all: 'عرض جميع الطرائق', cxr_title: 'أشعة الصدر', cxr_desc: 'كشف أكثر من 50 مرضاً مع تقييم تضخم القلب', ct_title: 'التصوير المقطعي', ct_desc: 'كشف نزيف الدماغ والعقيدات الرئوية والصدمات', mammo_title: 'تصوير الثدي', mammo_desc: 'تصنيف BI-RADS وكشف الآفات', mri_title: 'جناح الرنين المغناطيسي', mri_desc: 'تحليل الدماغ والعمود الفقري والعضلات والعظام', msk_title: 'أشعة العضلات والعظام', msk_desc: 'كشف الكسور وتشوهات العظام', dental_title: 'طب الأسنان', dental_desc: 'تحليل بانورامي وحول الذروة', ultrasound_title: 'الموجات فوق الصوتية', ultrasound_desc: 'تصوير البطن والتوليد', pet_title: 'مسح PET', pet_desc: 'الأورام والتصوير الأيضي' },
     features: { badge: 'لماذا ScanGuru', title: 'مصمم للتميز السريري', subtitle: 'ذكاء اصطناعي مؤسسي يندمج بسلاسة في سير عملك.', f1_title: 'مجموعة متعددة النماذج', f1_desc: 'نماذج ذكاء اصطناعي متعددة تعمل معاً لدقة أعلى.', f2_title: 'تحليل في الوقت الفعلي', f2_desc: 'نتائج في أقل من 60 ثانية مع أولوية تلقائية.', f3_title: 'تكامل سلس', f3_desc: 'يعمل مع PACS و RIS و EMR عبر HL7/FHIR.', f4_title: 'مسار التدقيق', f4_desc: 'تسجيل كامل للمتطلبات التنظيمية.' },
@@ -2203,7 +2203,7 @@ ar: {
 pt: {
     brand: { name: 'ScanGuru' },
     nav: { platform: 'Plataforma', modalities: 'Modalidades', technology: 'Tecnologia', about: 'Sobre', contact: 'Contacto', try_free: 'Experimentar Grátis', apply_pilot: 'Registo Gratuito', login: 'Entrar' },
-    home: { badge: 'Plano Gratuito Disponível', title: 'A Plataforma Completa de IA para Imagem Médica', subtitle: 'IA de fusão multimodal analisa 50+ patologias em 8 modalidades.', cta_pilot: 'Registo Gratuito', cta_try: 'Experimentar Grátis' },
+    home: { badge: 'Plano Gratuito Disponível', title: 'A Plataforma Completa de IA para Imagem Médica', subtitle: 'IA de fusão multimodal analisa 50+ patologias em 5 modalidades.', cta_pilot: 'Registo Gratuito', cta_try: 'Experimentar Grátis' },
     trust_bar: { hipaa: 'Conforme HIPAA', gdpr: 'Pronto para RGPD', dicom: 'Compatível DICOM' },
     modalities_section: { badge: 'Cobertura Abrangente', title: 'Uma Plataforma, Todas as Modalidades', view_all: 'Ver Todas as Modalidades', cxr_title: 'Radiografia Torácica', ct_title: 'Imagem CT', mammo_title: 'Mamografia', mri_title: 'Suite MRI', msk_title: 'Radiografia MSK', dental_title: 'Dentário', ultrasound_title: 'Ultrassom', pet_title: 'PET Scan' },
     features: { badge: 'Porquê ScanGuru', title: 'Construído para Excelência Clínica' },
@@ -2233,7 +2233,7 @@ pt: {
 'pt-BR': {
     brand: { name: 'ScanGuru' },
     nav: { platform: 'Plataforma', modalities: 'Modalidades', technology: 'Tecnologia', about: 'Sobre', contact: 'Contato', try_free: 'Teste Grátis', apply_pilot: 'Cadastro Gratuito', login: 'Entrar' },
-    home: { badge: 'Plano Gratuito Disponível', title: 'A Plataforma Completa de IA para Imagem Médica', subtitle: 'IA de fusão multimodal analisa 50+ patologias em 8 modalidades.', cta_pilot: 'Cadastro Gratuito', cta_try: 'Teste Grátis' },
+    home: { badge: 'Plano Gratuito Disponível', title: 'A Plataforma Completa de IA para Imagem Médica', subtitle: 'IA de fusão multimodal analisa 50+ patologias em 5 modalidades.', cta_pilot: 'Cadastro Gratuito', cta_try: 'Teste Grátis' },
     trust_bar: { hipaa: 'Compatível com HIPAA', gdpr: 'Pronto para LGPD', dicom: 'Compatível com DICOM' },
     modalities_section: { badge: 'Cobertura Abrangente', title: 'Uma Plataforma, Todas as Modalidades', cxr_title: 'Raio-X de Tórax', ct_title: 'Imagem de TC', mammo_title: 'Mamografia', mri_title: 'Suite de RM', msk_title: 'Raio-X MSK', dental_title: 'Odontológico', ultrasound_title: 'Ultrassom', pet_title: 'PET Scan' },
     features: { badge: 'Por Que ScanGuru', title: 'Construído para Excelência Clínica' },
@@ -2256,7 +2256,7 @@ pt: {
 // Japanese - 日本語
 ja: {
     nav: { platform: 'プラットフォーム', modalities: 'モダリティ', technology: 'テクノロジー', about: '会社概要', contact: 'お問い合わせ', try_free: '無料で試す', apply_pilot: '無料登録', login: 'ログイン' },
-    home: { badge: '無料プランあり', title: '医療画像のための完全なAIプラットフォーム', subtitle: 'マルチモーダル融合AIが8つのモダリティで50以上の病理を分析。', cta_pilot: '無料登録', cta_try: '無料で試す' },
+    home: { badge: '無料プランあり', title: '医療画像のための完全なAIプラットフォーム', subtitle: 'マルチモーダル融合AIが5つのモダリティで50以上の病理を分析。', cta_pilot: '無料登録', cta_try: '無料で試す' },
     trust_bar: { title: '医療リーダーから信頼されています', hipaa: 'HIPAA準拠', gdpr: 'GDPR対応' },
     modalities_section: { badge: '包括的なカバレッジ', title: '1つのプラットフォーム、すべてのモダリティ', view_all: 'すべてのモダリティを見る', cxr_title: '胸部X線', ct_title: 'CT画像', mammo_title: 'マンモグラフィー', mri_title: 'MRIスイート', msk_title: 'MSK X線', dental_title: '歯科', ultrasound_title: '超音波', pet_title: 'PETスキャン' },
     features: { badge: 'なぜScanGuruか', title: '臨床的卓越性のために構築', f1_title: 'マルチモデルアンサンブル', f2_title: 'リアルタイム分析', f3_title: 'シームレスな統合', f4_title: '監査証跡' },
@@ -2284,7 +2284,7 @@ ja: {
 // Korean - 한국어
 ko: {
     nav: { platform: '플랫폼', modalities: '모달리티', technology: '기술', about: '회사 소개', contact: '연락처', try_free: '무료 체험', apply_pilot: '무료 등록', login: '로그인' },
-    home: { badge: '무료 플랜 이용 가능', title: '의료 영상을 위한 완전한 AI 플랫폼', subtitle: '멀티모달 융합 AI가 8개 모달리티에서 50개 이상의 병리를 분석합니다.', cta_pilot: '무료 등록', cta_try: '무료 체험' },
+    home: { badge: '무료 플랜 이용 가능', title: '의료 영상을 위한 완전한 AI 플랫폼', subtitle: '멀티모달 융합 AI가 5개 모달리티에서 50개 이상의 병리를 분석합니다.', cta_pilot: '무료 등록', cta_try: '무료 체험' },
     trust_bar: { title: '의료 리더들의 신뢰', hipaa: 'HIPAA 준수', gdpr: 'GDPR 준비' },
     modalities_section: { badge: '포괄적인 커버리지', title: '하나의 플랫폼, 모든 모달리티', view_all: '모든 모달리티 보기', cxr_title: '흉부 X선', ct_title: 'CT 영상', mammo_title: '유방촬영술', mri_title: 'MRI 스위트', msk_title: 'MSK X선', dental_title: '치과', ultrasound_title: '초음파', pet_title: 'PET 스캔' },
     features: { badge: 'ScanGuru를 선택하는 이유', title: '임상 우수성을 위해 구축', f1_title: '멀티모델 앙상블', f2_title: '실시간 분석', f3_title: '원활한 통합', f4_title: '감사 추적' },
@@ -2311,7 +2311,7 @@ ko: {
 // Italian - Italiano
 it: {
     nav: { platform: 'Piattaforma', modalities: 'Modalità', technology: 'Tecnologia', about: 'Chi Siamo', contact: 'Contatti', try_free: 'Prova Gratis', apply_pilot: 'Registrati Gratis', login: 'Accedi' },
-    home: { badge: 'Piano Gratuito Disponibile', title: 'La Piattaforma AI Completa per l\'Imaging Medico', subtitle: 'IA a fusione multimodale analizza 50+ patologie in 8 modalità.', cta_pilot: 'Registrati Gratis', cta_try: 'Prova Gratis' },
+    home: { badge: 'Piano Gratuito Disponibile', title: 'La Piattaforma AI Completa per l\'Imaging Medico', subtitle: 'IA a fusione multimodale analizza 50+ patologie in 5 modalità.', cta_pilot: 'Registrati Gratis', cta_try: 'Prova Gratis' },
     trust_bar: { title: 'Affidabile dai Leader Sanitari', hipaa: 'Conforme HIPAA', gdpr: 'Pronto GDPR' },
     modalities_section: { badge: 'Copertura Completa', title: 'Una Piattaforma, Ogni Modalità', view_all: 'Vedi Tutte le Modalità', cxr_title: 'Radiografia Toracica', ct_title: 'Imaging CT', mammo_title: 'Mammografia', mri_title: 'Suite MRI', msk_title: 'Radiografia MSK', dental_title: 'Dentale', ultrasound_title: 'Ecografia', pet_title: 'PET Scan' },
     features: { badge: 'Perché ScanGuru', title: 'Costruito per l\'Eccellenza Clinica', f1_title: 'Ensemble Multi-Modello', f2_title: 'Analisi in Tempo Reale', f3_title: 'Integrazione Senza Soluzione di Continuità', f4_title: 'Traccia di Audit' },
@@ -2338,7 +2338,7 @@ it: {
 // Turkish - Türkçe
 tr: {
     nav: { platform: 'Platform', modalities: 'Modaliteler', technology: 'Teknoloji', about: 'Hakkımızda', contact: 'İletişim', try_free: 'Ücretsiz Dene', apply_pilot: 'Ücretsiz Kaydol', login: 'Giriş' },
-    home: { badge: 'Ücretsiz Plan Mevcut', title: 'Tıbbi Görüntüleme için Eksiksiz AI Platformu', subtitle: 'Çok modlu füzyon AI 8 modalitede 50+ patolojiyi analiz eder.', cta_pilot: 'Ücretsiz Kaydol', cta_try: 'Ücretsiz Dene' },
+    home: { badge: 'Ücretsiz Plan Mevcut', title: 'Tıbbi Görüntüleme için Eksiksiz AI Platformu', subtitle: 'Çok modlu füzyon AI 5 modalitede 50+ patolojiyi analiz eder.', cta_pilot: 'Ücretsiz Kaydol', cta_try: 'Ücretsiz Dene' },
     trust_bar: { title: 'Sağlık Liderleri Tarafından Güvenilir', hipaa: 'HIPAA Uyumlu', gdpr: 'KVKK Hazır' },
     modalities_section: { badge: 'Kapsamlı Kapsam', title: 'Tek Platform, Her Modalite', view_all: 'Tüm Modaliteleri Gör', cxr_title: 'Göğüs Röntgeni', ct_title: 'BT Görüntüleme', mammo_title: 'Mamografi', mri_title: 'MR Paketi', msk_title: 'MSK Röntgen', dental_title: 'Diş', ultrasound_title: 'Ultrason', pet_title: 'PET Tarama' },
     features: { badge: 'Neden ScanGuru', title: 'Klinik Mükemmellik için Tasarlandı', f1_title: 'Çoklu Model Topluluğu', f2_title: 'Gerçek Zamanlı Analiz', f3_title: 'Sorunsuz Entegrasyon', f4_title: 'Denetim İzi' },
@@ -2365,7 +2365,7 @@ tr: {
 // Russian - Русский
 ru: {
     nav: { platform: 'Платформа', modalities: 'Модальности', technology: 'Технология', about: 'О нас', contact: 'Контакты', try_free: 'Попробовать бесплатно', apply_pilot: 'Бесплатная регистрация', login: 'Войти' },
-    home: { badge: 'Бесплатный план доступен', title: 'Полная AI-платформа для медицинской визуализации', subtitle: 'Мультимодальный ИИ анализирует 50+ патологий в 8 модальностях.', cta_pilot: 'Бесплатная регистрация', cta_try: 'Попробовать бесплатно' },
+    home: { badge: 'Бесплатный план доступен', title: 'Полная AI-платформа для медицинской визуализации', subtitle: 'Мультимодальный ИИ анализирует 50+ патологий в 5 модальностях.', cta_pilot: 'Бесплатная регистрация', cta_try: 'Попробовать бесплатно' },
     trust_bar: { title: 'Доверие лидеров здравоохранения', hipaa: 'Соответствие HIPAA', gdpr: 'Готовность к GDPR' },
     modalities_section: { badge: 'Полный охват', title: 'Одна платформа, все модальности', view_all: 'Все модальности', cxr_title: 'Рентген грудной клетки', ct_title: 'КТ-визуализация', mammo_title: 'Маммография', mri_title: 'МРТ', msk_title: 'МСК рентген', dental_title: 'Стоматология', ultrasound_title: 'УЗИ', pet_title: 'ПЭТ-сканирование' },
     features: { badge: 'Почему ScanGuru', title: 'Создан для клинического совершенства', f1_title: 'Мультимодельный ансамбль', f2_title: 'Анализ в реальном времени', f3_title: 'Бесшовная интеграция', f4_title: 'Аудиторский след' },
@@ -2392,7 +2392,7 @@ ru: {
 // Vietnamese - Tiếng Việt
 vi: {
     nav: { platform: 'Nền tảng', modalities: 'Phương thức', technology: 'Công nghệ', about: 'Về chúng tôi', contact: 'Liên hệ', try_free: 'Dùng thử miễn phí', apply_pilot: 'Đăng ký miễn phí', login: 'Đăng nhập' },
-    home: { badge: 'Gói miễn phí có sẵn', title: 'Nền tảng AI hoàn chỉnh cho Hình ảnh Y tế', subtitle: 'AI đa phương thức phân tích hơn 50 bệnh lý trên 8 phương thức.', cta_pilot: 'Đăng ký miễn phí', cta_try: 'Dùng thử miễn phí' },
+    home: { badge: 'Gói miễn phí có sẵn', title: 'Nền tảng AI hoàn chỉnh cho Hình ảnh Y tế', subtitle: 'AI đa phương thức phân tích hơn 50 bệnh lý trên 5 phương thức.', cta_pilot: 'Đăng ký miễn phí', cta_try: 'Dùng thử miễn phí' },
     trust_bar: { title: 'Được tin tưởng bởi các nhà lãnh đạo y tế' },
     modalities_section: { badge: 'Bao phủ toàn diện', title: 'Một nền tảng, mọi phương thức', view_all: 'Xem tất cả', cxr_title: 'X-quang ngực', ct_title: 'CT', mammo_title: 'Nhũ ảnh', mri_title: 'MRI', msk_title: 'X-quang MSK', dental_title: 'Nha khoa', ultrasound_title: 'Siêu âm', pet_title: 'PET Scan' },
     features: { badge: 'Tại sao chọn ScanGuru', title: 'Xây dựng cho sự xuất sắc lâm sàng' },
@@ -2419,7 +2419,7 @@ vi: {
 // Indonesian - Bahasa Indonesia
 id: {
     nav: { platform: 'Platform', modalities: 'Modalitas', technology: 'Teknologi', about: 'Tentang Kami', contact: 'Kontak', try_free: 'Coba Gratis', apply_pilot: 'Daftar Gratis', login: 'Masuk' },
-    home: { badge: 'Paket Gratis Tersedia', title: 'Platform AI Lengkap untuk Pencitraan Medis', subtitle: 'AI fusi multimodal menganalisis 50+ patologi dalam 8 modalitas.', cta_pilot: 'Daftar Gratis', cta_try: 'Coba Gratis' },
+    home: { badge: 'Paket Gratis Tersedia', title: 'Platform AI Lengkap untuk Pencitraan Medis', subtitle: 'AI fusi multimodal menganalisis 50+ patologi dalam 5 modalitas.', cta_pilot: 'Daftar Gratis', cta_try: 'Coba Gratis' },
     trust_bar: { title: 'Dipercaya oleh Pemimpin Kesehatan' },
     modalities_section: { badge: 'Cakupan Komprehensif', title: 'Satu Platform, Semua Modalitas', view_all: 'Lihat Semua', cxr_title: 'X-Ray Dada', ct_title: 'CT Imaging', mammo_title: 'Mamografi', mri_title: 'MRI Suite', msk_title: 'MSK X-Ray', dental_title: 'Gigi', ultrasound_title: 'Ultrasound', pet_title: 'PET Scan' },
     features: { badge: 'Mengapa ScanGuru', title: 'Dibangun untuk Keunggulan Klinis' },
@@ -2446,7 +2446,7 @@ id: {
 // Thai - ไทย
 th: {
     nav: { platform: 'แพลตฟอร์ม', modalities: 'โมดาลิตี้', technology: 'เทคโนโลยี', about: 'เกี่ยวกับเรา', contact: 'ติดต่อ', try_free: 'ทดลองฟรี', apply_pilot: 'ลงทะเบียนฟรี', login: 'เข้าสู่ระบบ' },
-    home: { badge: 'แผนฟรีพร้อมใช้งาน', title: 'แพลตฟอร์ม AI ครบวงจรสำหรับการถ่ายภาพทางการแพทย์', subtitle: 'AI แบบหลายโหมดวิเคราะห์โรคมากกว่า 50 ชนิดใน 8 โมดาลิตี้', cta_pilot: 'ลงทะเบียนฟรี', cta_try: 'ทดลองฟรี' },
+    home: { badge: 'แผนฟรีพร้อมใช้งาน', title: 'แพลตฟอร์ม AI ครบวงจรสำหรับการถ่ายภาพทางการแพทย์', subtitle: 'AI แบบหลายโหมดวิเคราะห์โรคมากกว่า 50 ชนิดใน 5 โมดาลิตี้', cta_pilot: 'ลงทะเบียนฟรี', cta_try: 'ทดลองฟรี' },
     modalities_section: { badge: 'ครอบคลุมทั้งหมด', title: 'แพลตฟอร์มเดียว ทุกโมดาลิตี้', cxr_title: 'เอกซเรย์ทรวงอก', ct_title: 'CT', mammo_title: 'แมมโมแกรม', mri_title: 'MRI', dental_title: 'ทันตกรรม', ultrasound_title: 'อัลตราซาวด์', pet_title: 'PET Scan' },
     common: { loading: 'กำลังโหลด...', save: 'บันทึก', cancel: 'ยกเลิก', download: 'ดาวน์โหลด', search: 'ค้นหา', next: 'ถัดไป', back: 'กลับ' },
     cxr: { badge: 'AI เอกซเรย์ทรวงอก', title: 'การวิเคราะห์เอกซเรย์ทรวงอกที่ครอบคลุม' },
@@ -2463,7 +2463,7 @@ th: {
 // Polish - Polski
 pl: {
     nav: { platform: 'Platforma', modalities: 'Modalności', technology: 'Technologia', about: 'O nas', contact: 'Kontakt', try_free: 'Wypróbuj za darmo', apply_pilot: 'Zarejestruj się za darmo', login: 'Zaloguj' },
-    home: { badge: 'Darmowy plan dostępny', title: 'Kompletna platforma AI dla obrazowania medycznego', subtitle: 'Wielomodalna fuzja AI analizuje ponad 50 patologii w 8 modalnościach.', cta_pilot: 'Zarejestruj się za darmo', cta_try: 'Wypróbuj za darmo' },
+    home: { badge: 'Darmowy plan dostępny', title: 'Kompletna platforma AI dla obrazowania medycznego', subtitle: 'Wielomodalna fuzja AI analizuje ponad 50 patologii w 5 modalnościach.', cta_pilot: 'Zarejestruj się za darmo', cta_try: 'Wypróbuj za darmo' },
     modalities_section: { badge: 'Kompleksowy zasięg', title: 'Jedna platforma, każda modalność', cxr_title: 'RTG klatki piersiowej', ct_title: 'Obrazowanie CT', mammo_title: 'Mammografia', mri_title: 'Pakiet MRI', msk_title: 'RTG MSK', dental_title: 'Stomatologia', ultrasound_title: 'USG', pet_title: 'PET Scan' },
     common: { loading: 'Ładowanie...', save: 'Zapisz', cancel: 'Anuluj', download: 'Pobierz', search: 'Szukaj', next: 'Dalej', back: 'Wstecz' },
     cxr: { badge: 'AI RTG klatki piersiowej', title: 'Kompleksowa analiza RTG klatki piersiowej' },
@@ -2477,7 +2477,7 @@ pl: {
 // Dutch - Nederlands
 nl: {
     nav: { platform: 'Platform', modalities: 'Modaliteiten', technology: 'Technologie', about: 'Over ons', contact: 'Contact', try_free: 'Gratis proberen', apply_pilot: 'Gratis registreren', login: 'Inloggen' },
-    home: { badge: 'Gratis plan beschikbaar', title: 'Het complete AI-platform voor medische beeldvorming', subtitle: 'Multimodale fusie-AI analyseert 50+ pathologieën in 8 modaliteiten.', cta_pilot: 'Gratis registreren', cta_try: 'Gratis proberen' },
+    home: { badge: 'Gratis plan beschikbaar', title: 'Het complete AI-platform voor medische beeldvorming', subtitle: 'Multimodale fusie-AI analyseert 50+ pathologieën in 5 modaliteiten.', cta_pilot: 'Gratis registreren', cta_try: 'Gratis proberen' },
     modalities_section: { badge: 'Uitgebreide dekking', title: 'Eén platform, elke modaliteit', cxr_title: 'Thoraxfoto', ct_title: 'CT-beeldvorming', mammo_title: 'Mammografie', mri_title: 'MRI Suite', dental_title: 'Tandheelkunde', ultrasound_title: 'Echografie', pet_title: 'PET-scan' },
     common: { loading: 'Laden...', save: 'Opslaan', cancel: 'Annuleren', download: 'Downloaden', search: 'Zoeken', next: 'Volgende', back: 'Terug' },
     cxr: { badge: 'AI Thoraxfoto', title: 'Uitgebreide thoraxfoto-analyse' },
@@ -2491,7 +2491,7 @@ nl: {
 // Hebrew - עברית (RTL)
 he: {
     nav: { platform: 'פלטפורמה', modalities: 'מודליטיות', technology: 'טכנולוגיה', about: 'אודותינו', contact: 'צור קשר', try_free: 'נסה בחינם', apply_pilot: 'הרשמה חינם', login: 'התחברות' },
-    home: { badge: 'תוכנית חינמית זמינה', title: 'פלטפורמת AI מלאה להדמיה רפואית', subtitle: 'AI רב-מודלי מנתח למעלה מ-50 פתולוגיות ב-8 מודליטיות.', cta_pilot: 'הרשמה חינם', cta_try: 'נסה בחינם' },
+    home: { badge: 'תוכנית חינמית זמינה', title: 'פלטפורמת AI מלאה להדמיה רפואית', subtitle: 'AI רב-מודלי מנתח למעלה מ-50 פתולוגיות ב-5 מודליטיות.', cta_pilot: 'הרשמה חינם', cta_try: 'נסה בחינם' },
     modalities_section: { badge: 'כיסוי מקיף', title: 'פלטפורמה אחת, כל מודליטי', cxr_title: 'צילום חזה', ct_title: 'הדמיית CT', mammo_title: 'ממוגרפיה', mri_title: 'MRI', dental_title: 'שיניים', ultrasound_title: 'אולטרסאונד', pet_title: 'PET סריקת' },
     common: { loading: 'טוען...', save: 'שמור', cancel: 'בטל', download: 'הורד', search: 'חפש', next: 'הבא', back: 'חזור' },
     cxr: { badge: 'AI צילום חזה', title: 'ניתוח מקיף של צילום חזה' },
@@ -2505,7 +2505,7 @@ he: {
 // Persian/Farsi - فارسی (RTL)
 fa: {
     nav: { platform: 'پلتفرم', modalities: 'مودالیتی‌ها', technology: 'فناوری', about: 'درباره ما', contact: 'تماس', try_free: 'رایگان امتحان کنید', apply_pilot: 'ثبت‌نام رایگان', login: 'ورود' },
-    home: { badge: 'طرح رایگان موجود است', title: 'پلتفرم کامل هوش مصنوعی برای تصویربرداری پزشکی', subtitle: 'هوش مصنوعی چند وجهی بیش از 50 پاتولوژی را در 8 مودالیتی تحلیل می‌کند.', cta_pilot: 'ثبت‌نام رایگان', cta_try: 'رایگان امتحان کنید' },
+    home: { badge: 'طرح رایگان موجود است', title: 'پلتفرم کامل هوش مصنوعی برای تصویربرداری پزشکی', subtitle: 'هوش مصنوعی چند وجهی بیش از 50 پاتولوژی را در 5 مودالیتی تحلیل می‌کند.', cta_pilot: 'ثبت‌نام رایگان', cta_try: 'رایگان امتحان کنید' },
     modalities_section: { badge: 'پوشش جامع', title: 'یک پلتفرم، همه مودالیتی‌ها', cxr_title: 'اشعه ایکس قفسه سینه', ct_title: 'تصویربرداری CT', mammo_title: 'ماموگرافی', mri_title: 'MRI', dental_title: 'دندانپزشکی', ultrasound_title: 'اولتراسوند', pet_title: 'اسکن PET' },
     common: { loading: 'در حال بارگذاری...', save: 'ذخیره', cancel: 'لغو', download: 'دانلود', search: 'جستجو', next: 'بعدی', back: 'برگشت' },
     cxr: { badge: 'هوش مصنوعی اشعه ایکس قفسه سینه', title: 'تحلیل جامع اشعه ایکس قفسه سینه' },
@@ -2519,7 +2519,7 @@ fa: {
 // Urdu - اردو (RTL)
 ur: {
     nav: { platform: 'پلیٹ فارم', modalities: 'طریقے', technology: 'ٹیکنالوجی', about: 'ہمارے بارے میں', contact: 'رابطہ', try_free: 'مفت آزمائیں', apply_pilot: 'مفت رجسٹر کریں', login: 'لاگ ان' },
-    home: { badge: 'مفت پلان دستیاب', title: 'میڈیکل امیجنگ کے لیے مکمل AI پلیٹ فارم', subtitle: 'ملٹی موڈل AI 8 طریقوں میں 50+ پیتھالوجیز کا تجزیہ کرتا ہے۔', cta_pilot: 'مفت رجسٹر کریں', cta_try: 'مفت آزمائیں' },
+    home: { badge: 'مفت پلان دستیاب', title: 'میڈیکل امیجنگ کے لیے مکمل AI پلیٹ فارم', subtitle: 'ملٹی موڈل AI 5 طریقوں میں 50+ پیتھالوجیز کا تجزیہ کرتا ہے۔', cta_pilot: 'مفت رجسٹر کریں', cta_try: 'مفت آزمائیں' },
     modalities_section: { badge: 'جامع کوریج', title: 'ایک پلیٹ فارم، ہر طریقہ', cxr_title: 'سینے کا ایکسرے', ct_title: 'CT امیجنگ', mammo_title: 'میموگرافی', mri_title: 'MRI سویٹ', dental_title: 'دانتوں', ultrasound_title: 'الٹراساؤنڈ', pet_title: 'PET سکین' },
     common: { loading: 'لوڈ ہو رہا ہے...', save: 'محفوظ کریں', cancel: 'منسوخ', download: 'ڈاؤن لوڈ', search: 'تلاش', next: 'اگلا', back: 'واپس' },
     cxr: { badge: 'سینے کا ایکسرے AI', title: 'جامع سینے کا ایکسرے تجزیہ' },
@@ -2547,7 +2547,7 @@ bn: {
 // Tamil - தமிழ்
 ta: {
     nav: { platform: 'தளம்', modalities: 'முறைமைகள்', technology: 'தொழில்நுட்பம்', about: 'எங்களைப் பற்றி', contact: 'தொடர்பு', try_free: 'இலவசமாக முயற்சிக்கவும்', apply_pilot: 'இலவச பதிவு', login: 'உள்நுழை' },
-    home: { badge: 'இலவச திட்டம் கிடைக்கும்', title: 'மருத்துவ இமேஜிங்கிற்கான முழுமையான AI தளம்', subtitle: 'மல்டி-மோடல் ஃபியூஷன் AI 8 முறைமைகளில் 50+ நோய்களை பகுப்பாய்வு செய்கிறது.', cta_pilot: 'இலவச பதிவு', cta_try: 'இலவசமாக முயற்சிக்கவும்' },
+    home: { badge: 'இலவச திட்டம் கிடைக்கும்', title: 'மருத்துவ இமேஜிங்கிற்கான முழுமையான AI தளம்', subtitle: 'மல்டி-மோடல் ஃபியூஷன் AI 5 முறைமைகளில் 50+ நோய்களை பகுப்பாய்வு செய்கிறது.', cta_pilot: 'இலவச பதிவு', cta_try: 'இலவசமாக முயற்சிக்கவும்' },
     modalities_section: { badge: 'விரிவான கவரேஜ்', title: 'ஒரு தளம், ஒவ்வொரு முறைமையும்', cxr_title: 'மார்பு எக்ஸ்-ரே', ct_title: 'CT இமேஜிங்', mammo_title: 'மேமோகிராபி', mri_title: 'MRI தொகுப்பு', dental_title: 'பல்', ultrasound_title: 'அல்ட்ராசவுண்ட்', pet_title: 'PET ஸ்கேன்' },
     common: { loading: 'ஏற்றுகிறது...', save: 'சேமி', cancel: 'ரத்து', download: 'பதிவிறக்கு', search: 'தேடு', next: 'அடுத்து', back: 'பின்' },
     cxr: { badge: 'மார்பு எக்ஸ்-ரே AI', title: 'விரிவான மார்பு எக்ஸ்-ரே பகுப்பாய்வு' },
@@ -2561,7 +2561,7 @@ ta: {
 // Telugu - తెలుగు
 te: {
     nav: { platform: 'ప్లాట్‌ఫారమ్', modalities: 'మోడాలిటీలు', technology: 'సాంకేతికత', about: 'మా గురించి', contact: 'సంప్రదించండి', try_free: 'ఉచితంగా ప్రయత్నించండి', apply_pilot: 'ఉచిత నమోదు', login: 'లాగిన్' },
-    home: { badge: 'ఉచిత ప్లాన్ అందుబాటులో ఉంది', title: 'వైద్య ఇమేజింగ్ కోసం పూర్తి AI ప్లాట్‌ఫారమ్', subtitle: 'మల్టీ-మోడల్ ఫ్యూజన్ AI 8 మోడాలిటీలలో 50+ పాథాలజీలను విశ్లేషిస్తుంది.', cta_pilot: 'ఉచిత నమోదు', cta_try: 'ఉచితంగా ప్రయత్నించండి' },
+    home: { badge: 'ఉచిత ప్లాన్ అందుబాటులో ఉంది', title: 'వైద్య ఇమేజింగ్ కోసం పూర్తి AI ప్లాట్‌ఫారమ్', subtitle: 'మల్టీ-మోడల్ ఫ్యూజన్ AI 5 మోడాలిటీలలో 50+ పాథాలజీలను విశ్లేషిస్తుంది.', cta_pilot: 'ఉచిత నమోదు', cta_try: 'ఉచితంగా ప్రయత్నించండి' },
     modalities_section: { badge: 'సమగ్ర కవరేజ్', title: 'ఒక ప్లాట్‌ఫారమ్, ప్రతి మోడాలిటీ', cxr_title: 'ఛాతీ ఎక్స్-రే', ct_title: 'CT ఇమేజింగ్', mammo_title: 'మామోగ్రఫీ', mri_title: 'MRI సూట్', dental_title: 'దంత', ultrasound_title: 'అల్ట్రాసౌండ్', pet_title: 'PET స్కాన్' },
     common: { loading: 'లోడ్ అవుతోంది...', save: 'సేవ్', cancel: 'రద్దు', download: 'డౌన్‌లోడ్', search: 'వెతకండి', next: 'తదుపరి', back: 'వెనుకకు' },
     cxr: { badge: 'ఛాతీ ఎక్స్-రే AI', title: 'సమగ్ర ఛాతీ ఎక్స్-రే విశ్లేషణ' },
@@ -2573,7 +2573,7 @@ te: {
 // Marathi - मराठी
 mr: {
     nav: { platform: 'प्लॅटफॉर्म', modalities: 'मोडॅलिटीज', technology: 'तंत्रज्ञान', about: 'आमच्याबद्दल', contact: 'संपर्क', try_free: 'मोफत वापरून पहा', apply_pilot: 'मोफत नोंदणी', login: 'लॉगिन' },
-    home: { badge: 'मोफत प्लॅन उपलब्ध', title: 'वैद्यकीय इमेजिंगसाठी संपूर्ण AI प्लॅटफॉर्म', subtitle: 'मल्टी-मोडल फ्यूजन AI 8 मोडॅलिटीजमध्ये 50+ पॅथॉलॉजीजचे विश्लेषण करते.', cta_pilot: 'मोफत नोंदणी', cta_try: 'मोफत वापरून पहा' },
+    home: { badge: 'मोफत प्लॅन उपलब्ध', title: 'वैद्यकीय इमेजिंगसाठी संपूर्ण AI प्लॅटफॉर्म', subtitle: 'मल्टी-मोडल फ्यूजन AI 5 मोडॅलिटीजमध्ये 50+ पॅथॉलॉजीजचे विश्लेषण करते.', cta_pilot: 'मोफत नोंदणी', cta_try: 'मोफत वापरून पहा' },
     modalities_section: { badge: 'व्यापक कव्हरेज', title: 'एक प्लॅटफॉर्म, प्रत्येक मोडॅलिटी', cxr_title: 'छातीचा एक्स-रे', ct_title: 'CT इमेजिंग', mammo_title: 'मॅमोग्राफी', mri_title: 'MRI सूट', dental_title: 'दंत', ultrasound_title: 'अल्ट्रासाउंड', pet_title: 'PET स्कॅन' },
     common: { loading: 'लोड होत आहे...', save: 'जतन करा', cancel: 'रद्द करा', download: 'डाउनलोड', search: 'शोधा', next: 'पुढे', back: 'मागे' },
     cxr: { badge: 'छातीचा एक्स-रे AI', title: 'सर्वसमावेशक छातीचा एक्स-रे विश्लेषण' },
@@ -2585,7 +2585,7 @@ mr: {
 // Swahili - Kiswahili
 sw: {
     nav: { platform: 'Jukwaa', modalities: 'Njia', technology: 'Teknolojia', about: 'Kuhusu Sisi', contact: 'Wasiliana', try_free: 'Jaribu Bure', apply_pilot: 'Jiandikishe Bure', login: 'Ingia' },
-    home: { badge: 'Mpango wa Bure Unapatikana', title: 'Jukwaa Kamili la AI kwa Picha za Matibabu', subtitle: 'AI ya mchanganyiko inachunguza pathologies 50+ katika njia 8.', cta_pilot: 'Jiandikishe Bure', cta_try: 'Jaribu Bure' },
+    home: { badge: 'Mpango wa Bure Unapatikana', title: 'Jukwaa Kamili la AI kwa Picha za Matibabu', subtitle: 'AI ya mchanganyiko inachunguza pathologies 50+ katika njia 5.', cta_pilot: 'Jiandikishe Bure', cta_try: 'Jaribu Bure' },
     modalities_section: { badge: 'Ufunikaji Kamili', title: 'Jukwaa Moja, Kila Njia', cxr_title: 'X-Ray ya Kifua', ct_title: 'CT Imaging', mammo_title: 'Mamografia', mri_title: 'MRI Suite', dental_title: 'Meno', ultrasound_title: 'Ultrasound', pet_title: 'PET Scan' },
     common: { loading: 'Inapakia...', save: 'Hifadhi', cancel: 'Ghairi', download: 'Pakua', search: 'Tafuta', next: 'Ifuatayo', back: 'Rudi' },
     cxr: { badge: 'AI X-Ray ya Kifua', title: 'Uchambuzi Kamili wa X-Ray ya Kifua' },
@@ -2597,7 +2597,7 @@ sw: {
 // Ukrainian - Українська  
 uk: {
     nav: { platform: 'Платформа', modalities: 'Модальності', technology: 'Технологія', about: 'Про нас', contact: 'Контакти', try_free: 'Спробувати безкоштовно', apply_pilot: 'Безкоштовна реєстрація', login: 'Увійти' },
-    home: { badge: 'Безкоштовний план доступний', title: 'Повна AI-платформа для медичної візуалізації', subtitle: 'Мультимодальний ШІ аналізує 50+ патологій у 8 модальностях.', cta_pilot: 'Безкоштовна реєстрація', cta_try: 'Спробувати безкоштовно' },
+    home: { badge: 'Безкоштовний план доступний', title: 'Повна AI-платформа для медичної візуалізації', subtitle: 'Мультимодальний ШІ аналізує 50+ патологій у 5 модальностях.', cta_pilot: 'Безкоштовна реєстрація', cta_try: 'Спробувати безкоштовно' },
     modalities_section: { badge: 'Повне покриття', title: 'Одна платформа, усі модальності', cxr_title: 'Рентген грудної клітки', ct_title: 'КТ-візуалізація', mammo_title: 'Мамографія', mri_title: 'МРТ', dental_title: 'Стоматологія', ultrasound_title: 'УЗД', pet_title: 'ПЕТ-сканування' },
     common: { loading: 'Завантаження...', save: 'Зберегти', cancel: 'Скасувати', download: 'Завантажити', search: 'Пошук', next: 'Далі', back: 'Назад' },
     cxr: { badge: 'ШІ рентген грудної клітки', title: 'Комплексний аналіз рентгену грудної клітки' },
