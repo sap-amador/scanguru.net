@@ -1639,7 +1639,7 @@ const SAMPLE_IMAGES = {
             
             dropZone.addEventListener('drop', (e) => {
                 if (attest && !attest.checked) {
-                    showError('Just tick the box above to confirm it's a sample or de-identified image, then you're good to go.');
+                    showError("Just tick the box above to confirm it's a sample or de-identified image, then you're good to go.");
                     return;
                 }
                 const files = e.dataTransfer.files;
@@ -1660,7 +1660,7 @@ const SAMPLE_IMAGES = {
                 e.preventDefault();
 
                 if (attest && !attest.checked) {
-                    showError('Just tick the box above to confirm it's a sample or de-identified image, then you're good to go.');
+                    showError("Just tick the box above to confirm it's a sample or de-identified image, then you're good to go.");
                     return;
                 }
 
