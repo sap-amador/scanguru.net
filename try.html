@@ -991,6 +991,31 @@
                 </div>
                 
                 <!-- Upload Your Own Section -->
+                <style id="sg-attest-style">
+                    .sg-attest {
+                        border: 1px solid #99F6E4;
+                        background: #F0FDFA;
+                        border-radius: 10px;
+                        padding: 14px 16px;
+                        margin: 8px 0 16px;
+                        font-size: 0.86rem;
+                        line-height: 1.55;
+                        color: #475569;
+                    }
+                    .sg-attest strong { color: #0F766E; }
+                    .sg-attest .sg-attest-title {
+                        display: flex; align-items: center; gap: 8px;
+                        font-weight: 700; color: #0F766E; margin-bottom: 6px;
+                    }
+                    .sg-attest label.sg-attest-check {
+                        display: flex; align-items: flex-start; gap: 10px;
+                        margin-top: 12px; cursor: pointer; font-weight: 600; color: #374151;
+                    }
+                    .sg-attest label.sg-attest-check input { margin-top: 3px; width: 16px; height: 16px; flex: 0 0 auto; }
+                    .file-input-wrapper.sg-locked { opacity: 0.5; pointer-events: none; filter: grayscale(0.3); }
+                    .upload-btn.sg-locked,
+                    .upload-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+                </style>
                 <div class="upload-section">
                     <h3 class="upload-title">📤 Or Upload Your Own Image</h3>
                     <form id="uploadForm" class="upload-form">
@@ -1019,14 +1044,23 @@
                             </div>
                         </div>
                         
-                        <div class="file-input-wrapper" id="fileDropZone">
-                            <input type="file" id="uploadFile" accept="image/*,.dcm,.dicom" required>
+                        <div class="sg-attest">
+                            <div class="sg-attest-title">✨ Try it on your own image</div>
+                            You'll get a real, live read from our models — not a saved demo. Just two quick things so we keep everyone safe: ScanGuru gives an <strong>AI-assisted read that a clinician reviews</strong> — a confident second pair of eyes, not the final word. And please use a <strong>sample or de-identified image</strong> (nothing that identifies a real patient). That's it — tick the box and go.
+                            <label class="sg-attest-check">
+                                <input type="checkbox" id="uploadAttest">
+                                <span>I'm using a sample or de-identified image with no patient-identifying details, and I understand ScanGuru gives an AI-assisted read for a clinician to review.</span>
+                            </label>
+                        </div>
+
+                        <div class="file-input-wrapper sg-locked" id="fileDropZone">
+                            <input type="file" id="uploadFile" accept="image/*,.dcm,.dicom" disabled required>
                             <div class="file-input-icon">📁</div>
                             <div class="file-input-text">Drag & drop or click to select</div>
                             <div class="file-input-hint">DICOM, PNG, JPG up to 20MB</div>
                         </div>
                         
-                        <button type="submit" class="upload-btn" id="uploadBtn">
+                        <button type="submit" class="upload-btn sg-locked" id="uploadBtn" disabled>
                             🔬 Analyze Image
                         </button>
                     </form>
@@ -1564,7 +1598,30 @@ const SAMPLE_IMAGES = {
             const form = document.getElementById('uploadForm');
             const fileInput = document.getElementById('uploadFile');
             const dropZone = document.getElementById('fileDropZone');
-            
+            const attest = document.getElementById('uploadAttest');
+            const uploadBtn = document.getElementById('uploadBtn');
+
+            // Gate: "upload your own" is locked until the user accepts the
+            // research-use / no-PHI attestation. (Sample cases stay fully open.)
+            function setUploadEnabled(enabled) {
+                fileInput.disabled = !enabled;
+                uploadBtn.disabled = !enabled;
+                dropZone.classList.toggle('sg-locked', !enabled);
+                uploadBtn.classList.toggle('sg-locked', !enabled);
+                if (!enabled) {
+                    // Clear any previously chosen file when re-locking
+                    try { fileInput.value = ''; } catch (e) {}
+                    const t = dropZone.querySelector('.file-input-text');
+                    const h = dropZone.querySelector('.file-input-hint');
+                    if (t) t.textContent = 'Drag & drop or click to select';
+                    if (h) h.textContent = 'DICOM, PNG, JPG up to 20MB';
+                }
+            }
+            if (attest) {
+                setUploadEnabled(attest.checked);
+                attest.addEventListener('change', () => setUploadEnabled(attest.checked));
+            }
+
             // Drag and drop
             ['dragenter', 'dragover'].forEach(evt => {
                 dropZone.addEventListener(evt, (e) => {
@@ -1581,6 +1638,10 @@ const SAMPLE_IMAGES = {
             });
             
             dropZone.addEventListener('drop', (e) => {
+                if (attest && !attest.checked) {
+                    showError('Just tick the box above to confirm it's a sample or de-identified image, then you're good to go.');
+                    return;
+                }
                 const files = e.dataTransfer.files;
                 if (files.length) {
                     fileInput.files = files;
@@ -1597,7 +1658,12 @@ const SAMPLE_IMAGES = {
             // Form submission
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
+
+                if (attest && !attest.checked) {
+                    showError('Just tick the box above to confirm it's a sample or de-identified image, then you're good to go.');
+                    return;
+                }
+
                 const file = fileInput.files[0];
                 if (!file) {
                     showError('Please select an image file');
