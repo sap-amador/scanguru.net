@@ -877,7 +877,7 @@
             <span class="nav-logo-text">ScanGuru</span>
         </a>
         <div class="nav-actions">
-            <a href="/modalities" class="btn btn-ghost">All Modalities</a>
+            <a href="/modalities" class="btn btn-ghost" data-i18n="try.nav.all_modalities">All Modalities</a>
             
             <!-- Language Switcher -->
             <div class="language-switcher">
@@ -890,13 +890,13 @@
                 </button>
                 <div class="lang-dropdown" id="langDropdown">
                     <div class="lang-search">
-                        <input type="text" placeholder="Search language..." id="langSearch">
+                        <input type="text" placeholder="Search language..." data-i18n-placeholder="try.lang.search_ph" id="langSearch">
                     </div>
                     <div class="lang-list" id="langList"></div>
                 </div>
             </div>
             
-            <a href="/signup" class="btn btn-primary">Sign Up Free</a>
+            <a href="/signup" class="btn btn-primary" data-i18n="try.nav.sign_up">Sign Up Free</a>
         </div>
     </nav>
 
@@ -906,14 +906,14 @@
             <div class="hero-badges">
                 <div class="hero-badge">
                     <span>✅</span>
-                    <span>Interactive Demo — No Account Required</span>
+                    <span data-i18n="try.hero.badge1">Interactive Demo — No Account Required</span>
                 </div>
             </div>
             <h1>Try <span class="highlight">ScanGuru AI</span> Instantly</h1>
             <div class="hero-features">
                 <div class="hero-feature"><span>🎯</span><span>50+ Pathologies live</span></div>
-                <div class="hero-feature"><span>⚡</span><span>Results in Seconds</span></div>
-                <div class="hero-feature"><span>📄</span><span>Instant PDF Report</span></div>
+                <div class="hero-feature"><span>⚡</span><span data-i18n="try.hero.feat_speed">Results in Seconds</span></div>
+                <div class="hero-feature"><span>📄</span><span data-i18n="try.hero.feat_pdf">Instant PDF Report</span></div>
                 <div class="hero-feature"><span>🔒</span><span>Research Use Only</span></div>
                 <div class="hero-feature"><span>🌍</span><span>83 Languages</span></div>
             </div>
@@ -926,47 +926,47 @@
         <div class="modality-tabs" id="modalityTabs">
             <div class="modality-tab active" data-modality="cxr" data-api-modality="Chest X-ray">
                 <span class="tab-icon">🫁</span>
-                <span class="tab-name">Chest X-Ray</span>
+                <span class="tab-name" data-i18n="try.tabs.cxr">Chest X-Ray</span>
                 <span class="tab-stats">50 pathologies</span>
             </div>
             <div class="modality-tab" data-modality="ct-brain" data-api-modality="CT — Brain">
                 <span class="tab-icon">🧠</span>
-                <span class="tab-name">CT Brain</span>
+                <span class="tab-name" data-i18n="try.tabs.ct_brain">CT Brain</span>
                 <span class="tab-stats">45 pathologies</span>
             </div>
             <div class="modality-tab" data-modality="ct-chest" data-api-modality="CT — Chest">
                 <span class="tab-icon">🫁</span>
-                <span class="tab-name">CT Chest</span>
+                <span class="tab-name" data-i18n="try.tabs.ct_chest">CT Chest</span>
                 <span class="tab-stats">38 pathologies</span>
             </div>
             <div class="modality-tab" data-modality="mammo" data-api-modality="Mammography">
                 <span class="tab-icon">🩺</span>
-                <span class="tab-name">Mammography</span>
+                <span class="tab-name" data-i18n="try.tabs.mammo">Mammography</span>
                 <span class="tab-stats">28 pathologies</span>
             </div>
             <div class="modality-tab" data-modality="mri" data-api-modality="MRI — Spine">
                 <span class="tab-icon">🦴</span>
-                <span class="tab-name">MRI</span>
+                <span class="tab-name" data-i18n="try.tabs.mri">MRI</span>
                 <span class="tab-stats">42 pathologies</span>
             </div>
             <div class="modality-tab" data-modality="msk" data-api-modality="Skeletal X-ray">
                 <span class="tab-icon">🦴</span>
-                <span class="tab-name">MSK X-Ray</span>
+                <span class="tab-name" data-i18n="try.tabs.msk">MSK X-Ray</span>
                 <span class="tab-stats">35 pathologies</span>
             </div>
             <div class="modality-tab" data-modality="dental" data-api-modality="Dental X-ray">
                 <span class="tab-icon">🦷</span>
-                <span class="tab-name">Dental</span>
+                <span class="tab-name" data-i18n="try.tabs.dental">Dental</span>
                 <span class="tab-stats">32 pathologies</span>
             </div>
             <div class="modality-tab" data-modality="ultrasound" data-api-modality="Ultrasound">
                 <span class="tab-icon">👶</span>
-                <span class="tab-name">Ultrasound</span>
+                <span class="tab-name" data-i18n="try.tabs.ultrasound">Ultrasound</span>
                 <span class="tab-stats">40 pathologies</span>
             </div>
             <div class="modality-tab" data-modality="pet" data-api-modality="PET Scan">
                 <span class="tab-icon">⚛️</span>
-                <span class="tab-name">PET/CT</span>
+                <span class="tab-name" data-i18n="try.tabs.pet">PET/CT</span>
                 <span class="tab-stats">25 pathologies</span>
             </div>
         </div>
@@ -1014,26 +1014,26 @@
                     <form id="uploadForm" class="upload-form">
                         <div class="form-row">
                             <div class="form-group">
-                                <label class="form-label">Patient Name</label>
-                                <input type="text" class="form-input" id="uploadName" placeholder="Anonymous" value="Demo Patient">
+                                <label class="form-label" data-i18n="try.upload.patient_name">Patient Name</label>
+                                <input type="text" class="form-input" id="uploadName" placeholder="Anonymous" data-i18n-placeholder="try.upload.name_ph" value="Demo Patient">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Age</label>
+                                <label class="form-label" data-i18n="try.upload.age">Age</label>
                                 <input type="number" class="form-input" id="uploadAge" placeholder="45" value="45" min="0" max="150">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label class="form-label">Sex</label>
+                                <label class="form-label" data-i18n="try.upload.sex">Sex</label>
                                 <select class="form-select" id="uploadSex">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Male" data-i18n="try.upload.sex_male">Male</option>
+                                    <option value="Female" data-i18n="try.upload.sex_female">Female</option>
+                                    <option value="Other" data-i18n="try.upload.sex_other">Other</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Location</label>
-                                <input type="text" class="form-input" id="uploadLocation" placeholder="Demo Site" value="Demo">
+                                <label class="form-label" data-i18n="try.upload.location">Location</label>
+                                <input type="text" class="form-input" id="uploadLocation" placeholder="Demo Site" data-i18n-placeholder="try.upload.location_ph" value="Demo">
                             </div>
                         </div>
                         
@@ -1049,8 +1049,8 @@
                         <div class="file-input-wrapper sg-locked" id="fileDropZone">
                             <input type="file" id="uploadFile" accept="image/*,.dcm,.dicom" disabled required>
                             <div class="file-input-icon">📁</div>
-                            <div class="file-input-text">Drag & drop or click to select</div>
-                            <div class="file-input-hint">DICOM, PNG, JPG up to 20MB</div>
+                            <div class="file-input-text" data-i18n="try.upload.drop_text">Drag & drop or click to select</div>
+                            <div class="file-input-hint" data-i18n="try.upload.drop_hint">DICOM, PNG, JPG up to 20MB</div>
                         </div>
                         
                         <button type="submit" class="upload-btn sg-locked" id="uploadBtn" disabled>
@@ -1071,8 +1071,8 @@
                 <div id="resultsContent">
                     <div class="results-placeholder">
                         <div class="results-placeholder-icon">🔍</div>
-                        <div class="results-placeholder-text">Select a sample case or upload an image</div>
-                        <div class="results-placeholder-hint">AI analysis results will appear here</div>
+                        <div class="results-placeholder-text" data-i18n="try.results.placeholder_text">Select a sample case or upload an image</div>
+                        <div class="results-placeholder-hint" data-i18n="try.results.placeholder_hint">AI analysis results will appear here</div>
                     </div>
                 </div>
             </div>
@@ -1083,24 +1083,24 @@
     <div class="processing-overlay" id="processingOverlay">
         <div class="processing-modal">
             <div class="processing-spinner"></div>
-            <h3 class="processing-title">Analyzing Image</h3>
-            <p class="processing-status" id="processingStatus">Uploading scan...</p>
+            <h3 class="processing-title" data-i18n="try.processing.title">Analyzing Image</h3>
+            <p class="processing-status" id="processingStatus" data-i18n="try.processing.status_uploading">Uploading scan...</p>
             <div class="processing-steps">
                 <div class="processing-step" id="step1">
                     <span class="processing-step-icon">📤</span>
-                    <span>Uploading image</span>
+                    <span data-i18n="try.processing.step1">Uploading image</span>
                 </div>
                 <div class="processing-step" id="step2">
                     <span class="processing-step-icon">🧠</span>
-                    <span>Running AI models</span>
+                    <span data-i18n="try.processing.step2">Running AI models</span>
                 </div>
                 <div class="processing-step" id="step3">
                     <span class="processing-step-icon">🔍</span>
-                    <span>Detecting pathologies</span>
+                    <span data-i18n="try.processing.step3">Detecting pathologies</span>
                 </div>
                 <div class="processing-step" id="step4">
                     <span class="processing-step-icon">📄</span>
-                    <span>Generating PDF report</span>
+                    <span data-i18n="try.processing.step4">Generating PDF report</span>
                 </div>
             </div>
         </div>
@@ -1910,6 +1910,7 @@ const SAMPLE_IMAGES = {
     })();
     </script>
 <div class="sg-compliance-footer" role="note" aria-label="Regulatory notice" style="margin:0;padding:14px 18px;background:#0F172A;color:#E2E8F0;border-top:2px solid #F59E0B;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-size:12.5px;line-height:1.55;text-align:center;"><div style="max-width:960px;margin:0 auto;"><strong style="color:#FCD34D;">Clinician-reviewed decision support.</strong> This is an interactive research demonstration. AI output must be reviewed and confirmed by a qualified clinician before any clinical decision. <span style="display:inline-block;margin-left:6px;color:#FCD34D;font-weight:600;">Currently offered for Research Use Only — not FDA cleared or CE marked.</span><div style="margin-top:6px;color:#94A3B8;font-size:11.5px;">Not intended for: autonomous diagnosis · replacing clinical judgment · emergency triage · direct-to-patient use without a clinician.</div></div></div>
+    <script src="https://cdn.jsdelivr.net/gh/sap-amador/scanguru.net@e94f36a/scanguru-i18n-v6-full-site.js"></script>
     <script src="/scanguru-chrome.js"></script>
 </body>
 </html>
