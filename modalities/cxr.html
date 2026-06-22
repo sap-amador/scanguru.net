@@ -712,7 +712,7 @@
       .sg-sec{ padding: var(--space-20) var(--space-6) !important; }
       .sg-cta{ padding: var(--space-20) var(--space-6) !important; }
     </style>
-<style id="sg-cta-styles">
+<style id="sg-cta-styles" data-v="2">
   :root{
     --sg-teal:#2dd4bf; --sg-teal-deep:#14b8a6; --sg-teal-soft:rgba(45,212,191,.55); --sg-ink:#06241e;
   }
@@ -730,6 +730,21 @@
   .sg-cta--secondary:hover{transform:translateY(-2px);background:#eafaf5;}
   .sg-cta--ghost{color:#dff5ee;background:transparent;border-color:rgba(223,245,238,.45);}
   .sg-cta--ghost:hover{transform:translateY(-2px);border-color:#fff;background:rgba(255,255,255,.06);}
+
+  /* shape guard: keep the hero row as content-width pills regardless of legacy grid/stretch */
+  .hero-cta, .hero-buttons{
+    display:flex !important; flex-flow:row wrap !important;
+    align-items:center !important; justify-content:flex-start !important; gap:16px !important;
+  }
+  .hero-cta > .sg-cta, .hero-buttons > .sg-cta{
+    flex:0 0 auto !important; align-self:center !important;
+    width:auto !important; height:auto !important; min-height:0 !important;
+    padding:16px 30px !important; border-radius:12px !important;
+  }
+  @media (max-width:600px){
+    .hero-cta, .hero-buttons{ flex-direction:column !important; align-items:stretch !important; }
+    .hero-cta > .sg-cta, .hero-buttons > .sg-cta{ width:100% !important; }
+  }
   @media (prefers-reduced-motion:reduce){
     .sg-cta--primary{animation:none;} .sg-cta{transition:box-shadow .2s ease,background .2s ease;} .sg-cta:hover{transform:none;}
   }
