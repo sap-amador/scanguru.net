@@ -2666,6 +2666,10 @@ mi: { portal: {"stat_training": "NgÄ whakaahua whakangungu", "stat_langs": "NgÄ
 }
 };
 
+
+/* === SG-FEATHIPAA-BADGE-V1: hero badge label === */
+(function(){var e=(typeof ScanGuruI18n!=='undefined'&&ScanGuruI18n.translations&&ScanGuruI18n.translations.en)?ScanGuruI18n.translations.en:null;if(!e)return;e.try=e.try||{};e.try.hero=e.try.hero||{};e.try.hero.feat_hipaa="Clinician-verified";})();
+
 // Initialize on DOM ready
 if (typeof document !== 'undefined') {
     if (document.readyState === 'loading') {
