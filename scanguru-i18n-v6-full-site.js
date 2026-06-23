@@ -364,7 +364,7 @@ en: { portal: {"stat_training": "Training images", "stat_langs": "Languages", "s
         dicom: 'DICOM Compatible',
         hl7: 'HL7/FHIR Integration',
         cloud: 'Cloud & On-Premise',
-        soc2: 'SOC 2 Type II',
+        soc2: '',
         iso: 'ISO 27001'
     },
     
@@ -1658,9 +1658,9 @@ en: { portal: {"stat_training": "Training images", "stat_langs": "Languages", "s
         integration_title: 'Seamless Integration',
         integration_desc: 'Connect with your existing PACS, RIS, and EMR systems through standard protocols including DICOM, HL7, and FHIR.',
         security_title: 'Enterprise Security',
-        security_desc: 'HIPAA-compliant infrastructure with end-to-end encryption, SOC 2 Type II certification, and on-premise deployment options.',
+        security_desc: 'Infrastructure built around HIPAA and GDPR principles, with end-to-end encryption and on-premise deployment options.',
         validation_title: 'Clinical Validation',
-        validation_desc: 'Rigorous validation across diverse patient populations with peer-reviewed publications and regulatory clearances.',
+        validation_desc: 'Ongoing internal evaluation on held-out data with clinician review; independent clinical validation and regulatory work are in progress.',
         heuristics_title: 'Clinical Heuristics',
         heuristics_desc: 'AI findings enhanced with clinical rules and scoring systems used by practicing radiologists.',
         explainable_title: 'Explainable AI',
