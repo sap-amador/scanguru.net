@@ -1433,6 +1433,15 @@
 .pilot-banner{background:#eff6ff;border-top:1px solid #dbeafe;border-bottom:1px solid #dbeafe;padding:.7rem 0;text-align:center;}
 .pilot-banner span{font-size:.95rem;font-weight:600;color:#1d4ed8;}
 </style>
+
+<style id="sg-badge-css">
+.modality-status{display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:.18rem .55rem;border-radius:999px;margin-top:.35rem;}
+.modality-status::before{content:"";width:7px;height:7px;border-radius:50%;}
+.modality-status--pilot{color:#15803d;background:rgba(22,163,74,.10);}
+.modality-status--pilot::before{background:#16a34a;}
+.modality-status--roadmap{color:#64748b;background:rgba(148,163,184,.14);}
+.modality-status--roadmap::before{background:#94a3b8;}
+</style>
 </head>
 <body>
     <!-- Navigation -->
@@ -1731,6 +1740,7 @@
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="cxr.title">Chest X-Ray</h3>
                             <span class="modality-pathology-count" data-i18n="home.pc_50">50 Pathologies</span>
+                            <span class="modality-status modality-status--pilot" data-i18n="status.pilot">Pilot-ready</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="cxr.subtitle">
@@ -1756,6 +1766,7 @@
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="ct_brain.title">CT Brain</h3>
                             <span class="modality-pathology-count" data-i18n="home.pc_12">12 Pathologies</span>
+                            <span class="modality-status modality-status--pilot" data-i18n="status.pilot">Pilot-ready</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="ct_brain.subtitle">
@@ -1781,6 +1792,7 @@
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="ct_chest.title">CT Chest</h3>
                             <span class="modality-pathology-count" data-i18n="home.pc_30p">30+ Pathologies</span>
+                            <span class="modality-status modality-status--pilot" data-i18n="status.pilot">Pilot-ready</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="ct_chest.subtitle">
@@ -1806,6 +1818,7 @@
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="dental.title">Dental X-Ray</h3>
                             <span class="modality-pathology-count" data-i18n="home.pc_25p">25+ Pathologies</span>
+                            <span class="modality-status modality-status--pilot" data-i18n="status.pilot">Pilot-ready</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="dental.subtitle">
@@ -1831,6 +1844,7 @@
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="msk.title">MSK X-Ray</h3>
                             <span class="modality-pathology-count" data-i18n="home.pc_40p">40+ Pathologies</span>
+                            <span class="modality-status modality-status--pilot" data-i18n="status.pilot">Pilot-ready</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="msk.subtitle">
@@ -1855,7 +1869,8 @@
                         <div class="modality-icon">🩺</div>
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="mammo.title">Mammography</h3>
-                            <span class="modality-pathology-count" data-i18n="home.pc_42">42 Pathologies</span>
+                            <span class="modality-pathology-count" data-i18n="home.pc_42">15+ Pathologies</span>
+                            <span class="modality-status modality-status--pilot" data-i18n="status.pilot">Pilot-ready</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="mammo.subtitle">
@@ -1885,7 +1900,7 @@
                         <div class="modality-icon">🧲</div>
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="mri.title">MRI (6 Types)</h3>
-                            <span class="modality-pathology-count" data-i18n="home.pc_200p">200+ Pathologies</span>
+                            <span class="modality-status modality-status--roadmap" data-i18n="status.roadmap">Roadmap</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="mri.subtitle">
@@ -1911,7 +1926,7 @@
                         <div class="modality-icon">📡</div>
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="ultrasound.title">Ultrasound</h3>
-                            <span class="modality-pathology-count" data-i18n="home.pc_35p">35+ Pathologies</span>
+                            <span class="modality-status modality-status--roadmap" data-i18n="status.roadmap">Roadmap</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="ultrasound.subtitle">
@@ -1936,7 +1951,7 @@
                         <div class="modality-icon">☢️</div>
                         <div class="modality-info">
                             <h3 class="modality-title" data-i18n="pet.title">PET & PET-CT</h3>
-                            <span class="modality-pathology-count" data-i18n="home.pc_35">35 Pathologies</span>
+                            <span class="modality-status modality-status--roadmap" data-i18n="status.roadmap">Roadmap</span>
                         </div>
                     </div>
                     <p class="modality-description" data-i18n="pet.subtitle">
