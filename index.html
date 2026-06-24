@@ -1424,6 +1424,15 @@
     .sg-cta--primary{animation:none;} .sg-cta{transition:box-shadow .2s ease,background .2s ease;} .sg-cta:hover{transform:none;}
   }
 </style>
+
+<style id="sg-tier-css">
+.modality-tier{margin-bottom:var(--space-10,3rem);}
+.modality-tier-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate-500,#64748b);margin:0 0 var(--space-5,1.5rem);display:flex;align-items:center;gap:.55rem;}
+.modality-tier-label::before{content:"";width:9px;height:9px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.15);}
+.modality-tier--roadmap .modality-tier-label::before{background:#94a3b8;box-shadow:0 0 0 3px rgba(148,163,184,.15);}
+.pilot-banner{background:#eff6ff;border-top:1px solid #dbeafe;border-bottom:1px solid #dbeafe;padding:.7rem 0;text-align:center;}
+.pilot-banner span{font-size:.95rem;font-weight:600;color:#1d4ed8;}
+</style>
 </head>
 <body>
     <!-- Navigation -->
@@ -1558,6 +1567,7 @@
             </div>
         </div>
     </section>
+    <div class="pilot-banner"><div class="container"><span data-i18n="home.pilot_banner">Pilot program 2026 — now recruiting university and clinical research partners.</span></div></div>
 
     <!-- Trust Bar -->
     <section class="trust-bar">
@@ -1715,7 +1725,9 @@
                 </p>
             </div>
             
-            <div class="modalities-grid">
+            <div class="modality-tier">
+                <h3 class="modality-tier-label" data-i18n="modalities_section.tier_available">Available today</h3>
+                <div class="modalities-grid">
                 <!-- CXR -->
                 <div class="modality-card">
                     <div class="modality-header">
@@ -1739,6 +1751,7 @@
                         <a href="/modalities/cxr" class="modality-link">Learn More →</a>
                     </div>
                 </div>
+                
                 
                 <!-- CT Brain -->
                 <div class="modality-card">
@@ -1764,6 +1777,7 @@
                     </div>
                 </div>
                 
+                
                 <!-- CT Chest -->
                 <div class="modality-card">
                     <div class="modality-header">
@@ -1788,78 +1802,6 @@
                     </div>
                 </div>
                 
-                <!-- Mammography -->
-                <div class="modality-card">
-                    <div class="modality-header">
-                        <div class="modality-icon">🩺</div>
-                        <div class="modality-info">
-                            <h3 class="modality-title" data-i18n="mammo.title">Mammography</h3>
-                            <span class="modality-pathology-count" data-i18n="home.pc_42">42 Pathologies</span>
-                        </div>
-                    </div>
-                    <p class="modality-description" data-i18n="mammo.subtitle">
-                        AI-enhanced breast cancer screening with automated BI-RADS 0-6 classification, ACR density assessment, and CAD overlays.
-                    </p>
-                    <div class="modality-features">
-                        <span class="modality-feature" data-i18n="path.masses">Masses</span>
-                        <span class="modality-feature" data-i18n="path.calcifications">Calcifications</span>
-                        <span class="modality-feature" data-i18n="path.asymmetries">Asymmetries</span>
-                        <span class="modality-feature" data-i18n="path.distortion">Distortion</span>
-                    </div>
-                    <div class="modality-meta">
-                        <span class="modality-scoring"><strong>Scoring:</strong> BI-RADS 0-6, ACR A-D</span>
-                        <a href="/modalities/mammography" class="modality-link">Learn More →</a>
-                    </div>
-                </div>
-                
-                <!-- MRI -->
-                <div class="modality-card">
-                    <div class="modality-header">
-                        <div class="modality-icon">🧲</div>
-                        <div class="modality-info">
-                            <h3 class="modality-title" data-i18n="mri.title">MRI (6 Types)</h3>
-                            <span class="modality-pathology-count" data-i18n="home.pc_200p">200+ Pathologies</span>
-                        </div>
-                    </div>
-                    <p class="modality-description" data-i18n="mri.subtitle">
-                        Brain, Spine, Knee, Cardiac, Shoulder, Prostate - comprehensive multi-sequence analysis with all major protocols supported.
-                    </p>
-                    <div class="modality-features">
-                        <span class="modality-feature" data-i18n="path.spine">Spine</span>
-                        <span class="modality-feature" data-i18n="path.brain">Brain</span>
-                        <span class="modality-feature" data-i18n="path.cardiac">Cardiac</span>
-                        <span class="modality-feature" data-i18n="path.msk">MSK</span>
-                        <span class="modality-feature" data-i18n="path.prostate">Prostate</span>
-                    </div>
-                    <div class="modality-meta">
-                        <span class="modality-scoring"><strong>Scoring:</strong> PI-RADS, K-L, Multiple</span>
-                        <a href="/modalities/mri" class="modality-link">Learn More →</a>
-                    </div>
-                </div>
-                
-                <!-- MSK -->
-                <div class="modality-card">
-                    <div class="modality-header">
-                        <div class="modality-icon">🦴</div>
-                        <div class="modality-info">
-                            <h3 class="modality-title" data-i18n="msk.title">MSK X-Ray</h3>
-                            <span class="modality-pathology-count" data-i18n="home.pc_40p">40+ Pathologies</span>
-                        </div>
-                    </div>
-                    <p class="modality-description" data-i18n="msk.subtitle">
-                        Fracture detection, alignment assessment, and degenerative change identification across 8 anatomical regions.
-                    </p>
-                    <div class="modality-features">
-                        <span class="modality-feature" data-i18n="path.fractures">Fractures</span>
-                        <span class="modality-feature" data-i18n="path.dislocations">Dislocations</span>
-                        <span class="modality-feature" data-i18n="path.arthritis">Arthritis</span>
-                        <span class="modality-feature" data-i18n="path.bone_lesions">Bone Lesions</span>
-                    </div>
-                    <div class="modality-meta">
-                        <span class="modality-scoring"><strong>Scoring:</strong> Garden, Weber, K-L</span>
-                        <a href="/modalities/msk" class="modality-link">Learn More →</a>
-                    </div>
-                </div>
                 
                 <!-- Dental -->
                 <div class="modality-card">
@@ -1885,6 +1827,88 @@
                     </div>
                 </div>
                 
+                
+                <!-- MSK -->
+                <div class="modality-card">
+                    <div class="modality-header">
+                        <div class="modality-icon">🦴</div>
+                        <div class="modality-info">
+                            <h3 class="modality-title" data-i18n="msk.title">MSK X-Ray</h3>
+                            <span class="modality-pathology-count" data-i18n="home.pc_40p">40+ Pathologies</span>
+                        </div>
+                    </div>
+                    <p class="modality-description" data-i18n="msk.subtitle">
+                        Fracture detection, alignment assessment, and degenerative change identification across 8 anatomical regions.
+                    </p>
+                    <div class="modality-features">
+                        <span class="modality-feature" data-i18n="path.fractures">Fractures</span>
+                        <span class="modality-feature" data-i18n="path.dislocations">Dislocations</span>
+                        <span class="modality-feature" data-i18n="path.arthritis">Arthritis</span>
+                        <span class="modality-feature" data-i18n="path.bone_lesions">Bone Lesions</span>
+                    </div>
+                    <div class="modality-meta">
+                        <span class="modality-scoring"><strong>Scoring:</strong> Garden, Weber, K-L</span>
+                        <a href="/modalities/msk" class="modality-link">Learn More →</a>
+                    </div>
+                </div>
+                
+                
+                <!-- Mammography -->
+                <div class="modality-card">
+                    <div class="modality-header">
+                        <div class="modality-icon">🩺</div>
+                        <div class="modality-info">
+                            <h3 class="modality-title" data-i18n="mammo.title">Mammography</h3>
+                            <span class="modality-pathology-count" data-i18n="home.pc_42">42 Pathologies</span>
+                        </div>
+                    </div>
+                    <p class="modality-description" data-i18n="mammo.subtitle">
+                        AI-enhanced breast cancer screening with automated BI-RADS 0-6 classification, ACR density assessment, and CAD overlays.
+                    </p>
+                    <div class="modality-features">
+                        <span class="modality-feature" data-i18n="path.masses">Masses</span>
+                        <span class="modality-feature" data-i18n="path.calcifications">Calcifications</span>
+                        <span class="modality-feature" data-i18n="path.asymmetries">Asymmetries</span>
+                        <span class="modality-feature" data-i18n="path.distortion">Distortion</span>
+                    </div>
+                    <div class="modality-meta">
+                        <span class="modality-scoring"><strong>Scoring:</strong> BI-RADS 0-6, ACR A-D</span>
+                        <a href="/modalities/mammography" class="modality-link">Learn More →</a>
+                    </div>
+                </div>
+                
+                
+            </div>
+            </div>
+            <div class="modality-tier modality-tier--roadmap">
+                <h3 class="modality-tier-label" data-i18n="modalities_section.tier_roadmap">On the roadmap</h3>
+                <div class="modalities-grid">
+                <!-- MRI -->
+                <div class="modality-card">
+                    <div class="modality-header">
+                        <div class="modality-icon">🧲</div>
+                        <div class="modality-info">
+                            <h3 class="modality-title" data-i18n="mri.title">MRI (6 Types)</h3>
+                            <span class="modality-pathology-count" data-i18n="home.pc_200p">200+ Pathologies</span>
+                        </div>
+                    </div>
+                    <p class="modality-description" data-i18n="mri.subtitle">
+                        Brain, Spine, Knee, Cardiac, Shoulder, Prostate - comprehensive multi-sequence analysis with all major protocols supported.
+                    </p>
+                    <div class="modality-features">
+                        <span class="modality-feature" data-i18n="path.spine">Spine</span>
+                        <span class="modality-feature" data-i18n="path.brain">Brain</span>
+                        <span class="modality-feature" data-i18n="path.cardiac">Cardiac</span>
+                        <span class="modality-feature" data-i18n="path.msk">MSK</span>
+                        <span class="modality-feature" data-i18n="path.prostate">Prostate</span>
+                    </div>
+                    <div class="modality-meta">
+                        <span class="modality-scoring"><strong>Scoring:</strong> PI-RADS, K-L, Multiple</span>
+                        <a href="/modalities/mri" class="modality-link">Learn More →</a>
+                    </div>
+                </div>
+                
+                
                 <!-- Ultrasound -->
                 <div class="modality-card">
                     <div class="modality-header">
@@ -1909,6 +1933,7 @@
                     </div>
                 </div>
                 
+                
                 <!-- PET -->
                 <div class="modality-card">
                     <div class="modality-header">
@@ -1932,6 +1957,8 @@
                         <a href="/modalities/pet" class="modality-link">Learn More →</a>
                     </div>
                 </div>
+            
+            </div>
             </div>
         </div>
     </section>
