@@ -14,3 +14,7 @@ glossary_*.json
 signoff_*.json
 untranslated_*.json
 /ScanGuru Frontend Backup/
+
+# i18n working files
+*.filled.json
+en_chunk*.json
