@@ -83,7 +83,9 @@ def main():
     gpath = os.path.join(REPO, f"glossary_{lang}.json")
     json.dump(glossary, open(gpath, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     os.makedirs(OUTDIR, exist_ok=True)
-    shutil.copy(gpath, os.path.join(OUTDIR, f"glossary_{lang}.json"))
+    _dst = os.path.join(OUTDIR, f"glossary_{lang}.json")
+    if os.path.abspath(_dst) != os.path.abspath(gpath):   # root layout: gpath IS already in OUTDIR
+        shutil.copy(gpath, _dst)
     print(f"glossary_{lang}.json: {len(glossary)} pairs")
 
     # ---- regenerate en_leaves.json then build_packs --refresh ----
