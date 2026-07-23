@@ -68,14 +68,14 @@ textarea{min-height:84px;resize:vertical}
 <main class="wrap">
   <section>
     <p class="eyebrow">Get Started</p>
-    <h1>Create your free ScanGuru account</h1>
-    <p class="lead">Free access for research and evaluation — for universities, clinics, and individual clinicians exploring multilingual, explainable imaging AI.</p>
+    <h1 data-i18n="signup.title">Create your free ScanGuru account</h1>
+    <p class="lead" data-i18n="signup.lead">Free access for research and evaluation — for universities, clinics, and individual clinicians exploring multilingual, explainable imaging AI.</p>
     <ul class="points">
       <li><span class="dot">✓</span><span>Explainable, dual-language reports across our validated modalities.</span></li>
-      <li><span class="dot">✓</span><span>No credit card. Free for research and evaluation use.</span></li>
+      <li><span class="dot">✓</span><span>No credit card. Free for research and evaluation.</span></li>
       <li><span class="dot">✓</span><span>Under-resourced clinic? Ask about the <strong>Heal for All</strong> program.</span></li>
     </ul>
-    <div class="note">We review each request and set you up shortly. ScanGuru is offered for research and evaluation use; its output is intended to assist, not replace, a qualified clinician's judgment.</div>
+    <div class="note" data-i18n="signup.note">We review each request and set you up shortly. ScanGuru is currently available for research and evaluation, and is built to support a qualified clinician’s judgment — not replace it.</div>
   </section>
 
   <section>
@@ -85,78 +85,78 @@ textarea{min-height:84px;resize:vertical}
       <form id="signupForm" novalidate>
         <div class="row">
           <div class="field">
-            <label for="first">First name <span class="req">*</span></label>
+            <label for="first"><span data-i18n="signup.first_name">First name</span> <span class="req">*</span></label>
             <input id="first" name="first" type="text" autocomplete="given-name" required>
-            <p class="err">Please enter your first name.</p>
+            <p class="err" data-i18n="signup.err_first">Please enter your first name.</p>
           </div>
           <div class="field">
-            <label for="last">Last name <span class="req">*</span></label>
+            <label for="last"><span data-i18n="signup.last_name">Last name</span> <span class="req">*</span></label>
             <input id="last" name="last" type="text" autocomplete="family-name" required>
-            <p class="err">Please enter your last name.</p>
+            <p class="err" data-i18n="signup.err_last">Please enter your last name.</p>
           </div>
         </div>
 
         <div class="field">
-          <label for="email">Work email <span class="req">*</span></label>
+          <label for="email"><span data-i18n="signup.work_email">Work email</span> <span class="req">*</span></label>
           <input id="email" name="email" type="email" autocomplete="email" required>
-          <p class="err">Please enter a valid email address.</p>
+          <p class="err" data-i18n="signup.err_email">Please enter a valid email address.</p>
         </div>
 
         <div class="field">
-          <label for="org">Organization / Institution <span class="req">*</span></label>
+          <label for="org"><span data-i18n="signup.org">Organization / Institution</span> <span class="req">*</span></label>
           <input id="org" name="org" type="text" autocomplete="organization" required>
-          <p class="err">Please enter your organization.</p>
+          <p class="err" data-i18n="signup.err_org">Please enter your organization.</p>
         </div>
 
         <div class="row">
           <div class="field">
-            <label for="role">Your role <span class="req">*</span></label>
+            <label for="role"><span data-i18n="signup.role">Your role</span> <span class="req">*</span></label>
             <select id="role" name="role" required>
               <option value="">Select…</option>
-              <option>Radiologist</option>
-              <option>Clinician / Physician</option>
-              <option>Researcher</option>
-              <option>Student / Trainee</option>
-              <option>IT / Administration</option>
-              <option>Other</option>
+              <option data-i18n="signup.role_radiologist">Radiologist</option>
+              <option data-i18n="signup.role_clinician">Clinician / Physician</option>
+              <option data-i18n="signup.role_researcher">Researcher</option>
+              <option data-i18n="signup.role_student">Student / Trainee</option>
+              <option data-i18n="signup.role_it">IT / Administration</option>
+              <option data-i18n="signup.role_other">Other</option>
             </select>
-            <p class="err">Please select your role.</p>
+            <p class="err" data-i18n="signup.err_role">Please select your role.</p>
           </div>
           <div class="field">
-            <label for="country">Country <span class="req">*</span></label>
+            <label for="country"><span data-i18n="signup.country">Country</span> <span class="req">*</span></label>
             <input id="country" name="country" type="text" autocomplete="country-name" required>
-            <p class="err">Please enter your country.</p>
+            <p class="err" data-i18n="signup.err_country">Please enter your country.</p>
           </div>
         </div>
 
         <div class="field">
-          <label for="interest">Primary interest</label>
+          <label for="interest" data-i18n="signup.interest">Primary interest</label>
           <select id="interest" name="interest">
             <option value="">Select…</option>
-            <option>Chest X-Ray (CXR)</option>
-            <option>CT Brain</option>
-            <option>CT Chest</option>
-            <option>Dental</option>
-            <option>MSK</option>
-            <option>Mammography</option>
-            <option>Research collaboration</option>
-            <option>Heal for All program</option>
-            <option>Other / Not sure yet</option>
+            <option data-i18n="signup.int_cxr">Chest X-Ray (CXR)</option>
+            <option data-i18n="signup.int_ctbrain">CT Brain</option>
+            <option data-i18n="signup.int_ctchest">CT Chest</option>
+            <option data-i18n="signup.int_dental">Dental</option>
+            <option data-i18n="signup.int_msk">MSK</option>
+            <option data-i18n="signup.int_mammo">Mammography</option>
+            <option data-i18n="signup.int_research">Research collaboration</option>
+            <option data-i18n="signup.int_heal">Heal for All program</option>
+            <option data-i18n="signup.int_other">Other / Not sure yet</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="msg">How do you plan to use ScanGuru?</label>
-          <textarea id="msg" name="msg" placeholder="Optional — a sentence or two helps us set you up well."></textarea>
+          <label for="msg" data-i18n="signup.use_q">How do you plan to use ScanGuru?</label>
+          <textarea id="msg" name="msg" data-i18n-placeholder="signup.use_help" placeholder="Optional — a sentence or two helps us set you up well."></textarea>
         </div>
 
         <label class="consent">
           <input id="consent" name="consent" type="checkbox" required>
-          <span>I understand ScanGuru is currently available for research and evaluation, and that it is built to support a qualified clinician’s judgment — not replace it. I agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>. <span class="req">*</span></span>
+          <span><span data-i18n="signup.consent_pre">I understand ScanGuru is currently available for research and evaluation, and that it is built to support a qualified clinician’s judgment — not replace it. I agree to the </span><a href="/terms" data-i18n="footer.terms">Terms</a><span data-i18n="signup.consent_and"> and </span><a href="/privacy" data-i18n="footer.privacy">Privacy Policy</a><span data-i18n="signup.consent_end">.</span> <span class="req">*</span></span>
         </label>
-        <p class="err" id="consentErr" style="margin-top:-10px">Please acknowledge to continue.</p>
+        <p class="err" id="consentErr" style="margin-top:-10px" data-i18n="signup.err_ack">Please acknowledge to continue.</p>
 
-        <button type="submit" class="btn" id="submitBtn">Request free access</button>
+        <button type="submit" class="btn" id="submitBtn" data-i18n="signup.submit">Request free access</button>
         <p class="signin">Already have an account? <a href="https://portal.scanguru.net">Sign in</a></p>
       </form>
 
