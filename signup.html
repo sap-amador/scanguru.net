@@ -83,6 +83,11 @@ textarea{min-height:84px;resize:vertical}
       <div id="formStatus" class="form-status"></div>
 
       <form id="signupForm" novalidate>
+        <!-- SIGNUP_ANTISPAM_V1: honeypot — humans never see or fill this -->
+        <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+          <label for="website">Website</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <div class="row">
           <div class="field">
             <label for="first"><span data-i18n="signup.first_name">First name</span> <span class="req">*</span></label>
@@ -207,9 +212,11 @@ const CONTACT_EMAIL   = "sales@scanguru.ai";   // account/access requests (match
     const cbad=!consent.checked; consentErr.style.display=cbad?'block':'none'; if(cbad) ok=false;
     return ok;
   }
+  window.__sgFormTs=Date.now(); // SIGNUP_ANTISPAM_V1: fill-time check
   function payload(){
     const d={}; new FormData(form).forEach(function(v,k){ d[k]=v; });
     d.source='scanguru.ai/signup'; d.submitted_at=new Date().toISOString();
+    d.website=(document.getElementById('website')||{}).value||''; d.form_ts=window.__sgFormTs||null;
     return d;
   }
   function showStatus(kind,text){ statusEl.className='form-status show '+kind; statusEl.textContent=text; }
