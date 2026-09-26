@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ScanGuru — Review access request</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#57B7A3;--teal-dark:#3E9A87;--ink:#1F2937;--slate:#64748B;--line:#E5E7EB;--bg:#F6F8FA;--red:#DC2626;--amber:#B45309}
+*{box-sizing:border-box}body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;display:flex;align-items:center;gap:10px}
+header b{font-size:18px}header span{color:var(--slate);font-size:13px}
+main{max-width:720px;margin:32px auto;padding:0 16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+h1{font-size:22px;margin:0 0 4px}.sub{color:var(--slate);font-size:14px;margin:0 0 20px}
+dl{display:grid;grid-template-columns:140px 1fr;gap:10px 16px;margin:0;font-size:15px}dt{color:var(--slate)}dd{margin:0;word-break:break-word}
+.msg{background:var(--bg);border-radius:10px;padding:12px 14px;white-space:pre-wrap;font-size:14px}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+.ok{background:#ECFDF5;color:#065F46}.warn{background:#FFFBEB;color:var(--amber)}.bad{background:#FEF2F2;color:var(--red)}.done{background:#EFF6FF;color:#1D4ED8}
+label{display:block;font-weight:600;font-size:14px;margin:22px 0 6px}
+textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;resize:vertical}
+.actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+button{border:0;border-radius:10px;padding:13px 22px;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+.approve{background:var(--teal);color:#fff}.approve:hover{background:var(--teal-dark)}
+.reject{background:#fff;color:var(--red);border:1px solid #FCA5A5}.reject:hover{background:#FEF2F2}
+button:disabled{opacity:.5;cursor:default}
+.result{margin-top:20px;padding:16px;border-radius:12px;font-size:15px;line-height:1.5}
+.result.good{background:#ECFDF5;border:1px solid #A7F3D0}.result.err{background:#FEF2F2;border:1px solid #FCA5A5}
+.pw{font-family:ui-monospace,Menlo,monospace;background:#fff;border:1px dashed #A7F3D0;padding:4px 8px;border-radius:6px}
+.hint{color:var(--slate);font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<header><b>ScanGuru</b><span>Access request review — internal</span></header>
+<main>
+  <div class="card" id="card">
+    <h1>Loading request…</h1>
+    <p class="sub">Verifying your review link.</p>
+  </div>
+</main>
+<script>
+const API = "https://scanguru-portal-api-production.up.railway.app/api/v1/signup";
+const qs = new URLSearchParams(location.search);
+const id = qs.get('id'), t = qs.get('t');
+const card = document.getElementById('card');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = iso => iso ? new Date(iso).toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'}) : '—';
+
+function fail(msg){ card.innerHTML = `<h1>Can't open this request</h1><p class="sub">${esc(msg)}</p><p class="hint">Fallback: <code>railway ssh</code> → <code>python approve_signup.py --list</code></p>`; }
+
+async function load(){
+  if(!id || !t) return fail('The link is missing its id or token.');
+  let r; try { r = await fetch(`${API}/review/${encodeURIComponent(id)}?t=${encodeURIComponent(t)}`); } catch(e){ return fail('Network error: '+e.message); }
+  if(!r.ok){ let d=''; try{ d=(await r.json()).detail||''; }catch(_){} return fail(d || `HTTP ${r.status}`); }
+  render(await r.json());
+}
+
+function render(q){
+  const pending = q.status === 'pending';
+  const spam = q.spam_flags && q.spam_flags.length;
+  const statusBadge = pending ? `<span class="badge ${spam?'bad':'ok'}">${spam?'flagged: '+esc(q.spam_flags.join(' ')):'passed spam checks'}</span>`
+                              : `<span class="badge done">already ${esc(q.status)} · ${fmt(q.reviewed_at)}</span>`;
+  card.innerHTML = `
+    <h1>${esc(q.first_name)} ${esc(q.last_name)} <small style="font-weight:500;color:var(--slate)">— ${esc(q.role_text)}</small></h1>
+    <p class="sub">${statusBadge} &nbsp; submitted ${fmt(q.created_at)}</p>
+    <dl>
+      <dt>Email</dt><dd><a href="mailto:${esc(q.email)}">${esc(q.email)}</a></dd>
+      <dt>Organization</dt><dd>${esc(q.org_name)}</dd>
+      <dt>Country</dt><dd>${esc(q.country)}</dd>
+      <dt>Interest</dt><dd>${esc(q.interest || '—')}</dd>
+      <dt>Source</dt><dd>${esc(q.source || '—')} · IP ${esc(q.ip_address || '—')}</dd>
+      <dt>Message</dt><dd><div class="msg">${esc(q.message || '(none)')}</div></dd>
+      ${q.review_note && !spam ? `<dt>Review note</dt><dd>${esc(q.review_note)}</dd>` : ''}
+    </dl>
+    ${pending ? `
+      <label for="note">Personal note to the applicant <span style="color:var(--slate);font-weight:400">(optional — included in their email)</span></label>
+      <textarea id="note" placeholder="e.g. Welcome aboard, Dr. Koi — looking forward to your feedback on the CXR reports."></textarea>
+      <div class="actions">
+        <button class="approve" id="btnA">Approve &amp; send sign-in details</button>
+        <button class="reject" id="btnR">Reject</button>
+      </div>
+      <p class="hint">Approve creates the account and emails a temporary password. Reject sends a courteous decline (your note replaces the default wording).</p>
+      <div id="out"></div>` : ''}
+  `;
+  if(pending){
+    document.getElementById('btnA').onclick = () => act('approve');
+    document.getElementById('btnR').onclick = () => { if(confirm(`Reject ${q.first_name} ${q.last_name} and email them a decline?`)) act('reject'); };
+  }
+}
+
+async function act(kind){
+  const note = document.getElementById('note').value.trim() || null;
+  const out = document.getElementById('out');
+  document.querySelectorAll('button').forEach(b => b.disabled = true);
+  out.innerHTML = `<div class="result">Working…</div>`;
+  let r, d = {};
+  try {
+    r = await fetch(`${API}/review/${encodeURIComponent(id)}/${kind}`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({t, note})});
+    try { d = await r.json(); } catch(_){}
+  } catch(e){ out.innerHTML = `<div class="result err">Network error: ${esc(e.message)}</div>`; document.querySelectorAll('button').forEach(b=>b.disabled=false); return; }
+  if(!r.ok || !d.ok){
+    out.innerHTML = `<div class="result err">${esc(d.detail || d.error || `HTTP ${r.status}`)}</div>`;
+    if(d.status) setTimeout(load, 1200); else document.querySelectorAll('button').forEach(b=>b.disabled=false);
+    return;
+  }
+  if(d.action === 'approved'){
+    out.innerHTML = `<div class="result good">
+      <b>Approved.</b> ${d.reused_user ? esc(d.message) : `Account created for <b>${esc(d.email)}</b> in <b>${esc(d.org)}</b> (${esc(d.role)}).`}<br>
+      Welcome email: ${d.email_sent ? 'sent ✓' : '<b style="color:var(--red)">NOT sent</b> — share the password manually'}.
+      ${d.temp_password ? `<br>Temporary password (shown once, not stored): <span class="pw">${esc(d.temp_password)}</span>` : ''}
+    </div>`;
+  } else {
+    out.innerHTML = `<div class="result good"><b>Rejected.</b> Decline email ${d.email_sent ? 'sent ✓' : '<b style="color:var(--red)">NOT sent</b>'} to ${esc(d.email)}.</div>`;
+  }
+}
+load();
+</script>
+</body>
+</html>
